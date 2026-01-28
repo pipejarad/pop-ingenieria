@@ -1,0 +1,162 @@
+// Servicios de automatización industrial
+export const services = [
+  {
+    id: "control-instrumentacion",
+    title: "Control e Instrumentación de Procesos",
+    description:
+      "Diseño e implementación de sistemas de control avanzado para optimizar procesos industriales.",
+    shortDescription: "Sistemas de control avanzado para procesos industriales",
+    icon: "⚙️",
+    features: [
+      "Controladores PID avanzados",
+      "Sistemas de control en cascada",
+      "Control predictivo (MPC)",
+      "Instrumentación de campo",
+      "Calibración de equipos",
+      "Optimización de procesos",
+    ],
+    benefits: [
+      "Mayor eficiencia operacional",
+      "Reducción de costos energéticos",
+      "Mejor calidad del producto",
+      "Menor variabilidad del proceso",
+    ],
+    technologies: ["Honeywell", "Yokogawa", "ABB", "Siemens", "Emerson"],
+    applications: ["Refinación", "Petroquímica", "Minería", "Energía"],
+    featured: true,
+  },
+  {
+    id: "variadores-velocidad",
+    title: "Variadores de Velocidad y Control de Motores",
+    description:
+      "Implementación de sistemas de control de motores eléctricos para optimizar consumo energético.",
+    shortDescription: "Control eficiente de motores eléctricos industriales",
+    icon: "🔌",
+    features: [
+      "Variadores de frecuencia (VFD)",
+      "Arrancadores suaves",
+      "Control de torque",
+      "Sistemas de frenado",
+      "Protección de motores",
+      "Monitoreo de parámetros",
+    ],
+    benefits: [
+      "Ahorro energético hasta 30%",
+      "Mayor vida útil de motores",
+      "Control preciso de velocidad",
+      "Reducción de mantenimiento",
+    ],
+    technologies: ["ABB", "Schneider", "Siemens", "Danfoss", "WEG"],
+    applications: ["Bombas", "Ventiladores", "Compresores", "Transportadores"],
+    featured: true,
+  },
+  {
+    id: "reles-inteligentes",
+    title: "Protección con Relés Inteligentes",
+    description:
+      "Sistemas de protección eléctrica inteligente para garantizar operación segura de equipos críticos.",
+    shortDescription: "Protección eléctrica inteligente para equipos críticos",
+    icon: "🛡️",
+    features: [
+      "Relés digitales multifunción",
+      "Protección diferencial",
+      "Protección de distancia",
+      "Monitoreo de calidad de energía",
+      "Comunicación IEC 61850",
+      "Registros de eventos",
+    ],
+    benefits: [
+      "Protección confiable 24/7",
+      "Diagnóstico predictivo",
+      "Reducción de paradas",
+      "Mayor seguridad operacional",
+    ],
+    technologies: ["SEL", "ABB", "Siemens", "GE", "Schneider"],
+    applications: ["Subestaciones", "Industria", "Generación", "Transmisión"],
+    featured: false,
+  },
+  {
+    id: "plc-dcs",
+    title: "Programación PLC y DCS",
+    description:
+      "Desarrollo de lógicas de control y sistemas distribuidos para automatización integral.",
+    shortDescription: "Lógicas de control y automatización integral",
+    icon: "💻",
+    features: [
+      "Programación ladder y estructurada",
+      "Sistemas SCADA/HMI",
+      "Comunicaciones industriales",
+      "Bases de datos históricas",
+      "Alarmas y eventos",
+      "Reportes automáticos",
+    ],
+    benefits: [
+      "Control centralizado",
+      "Reducción de errores humanos",
+      "Trazabilidad completa",
+      "Operación remota",
+    ],
+    technologies: [
+      "Allen-Bradley",
+      "Siemens",
+      "Schneider",
+      "Mitsubishi",
+      "Omron",
+    ],
+    applications: ["Manufactura", "Procesos", "Utilities", "Edificios"],
+    featured: true,
+  },
+  {
+    id: "integracion-sistemas",
+    title: "Integración de Sistemas",
+    description:
+      "Conectividad e interoperabilidad entre diferentes sistemas de automatización y gestión.",
+    shortDescription: "Conectividad entre sistemas de automatización",
+    icon: "🔗",
+    features: [
+      "Protocolos industriales",
+      "Gateways de comunicación",
+      "APIs personalizadas",
+      "Sincronización de datos",
+      "Ciberseguridad industrial",
+      "Respaldo y redundancia",
+    ],
+    benefits: [
+      "Vista integral del proceso",
+      "Mejor toma de decisiones",
+      "Eficiencia operacional",
+      "Reducción de silos",
+    ],
+    technologies: ["OPC-UA", "Modbus", "Ethernet/IP", "MQTT", "REST APIs"],
+    applications: ["MES", "ERP", "Cloud", "IoT Industrial"],
+    featured: false,
+  },
+  {
+    id: "consultoria-asesoria",
+    title: "Consultoría y Asesoría Técnica",
+    description:
+      "Análisis experto y recomendaciones estratégicas para proyectos de automatización.",
+    shortDescription: "Asesoría experta en automatización industrial",
+    icon: "🎯",
+    features: [
+      "Auditorías de sistemas",
+      "Estudios de factibilidad",
+      "Especificaciones técnicas",
+      "Análisis costo-beneficio",
+      "Planes de implementación",
+      "Capacitación técnica",
+    ],
+    benefits: [
+      "Decisiones informadas",
+      "Minimización de riesgos",
+      "ROI optimizado",
+      "Conocimiento transferido",
+    ],
+    technologies: ["Metodologías ISA", "NIST", "IEC", "IEEE", "Best Practices"],
+    applications: ["Evaluaciones", "Upgrades", "Modernización", "Startups"],
+    featured: false,
+  },
+];
+
+// Servicios destacados para homepage
+export const featuredServices = services.filter((service) => service.featured);

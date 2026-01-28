@@ -1,0 +1,48 @@
+.section {
+  padding: var(--section-padding);
+}
+
+.sectionTight {
+  padding: 3rem 1rem;
+}
+
+.sectionSpaced {
+  padding: 6rem 1rem;
+}
+
+.sectionBgGray {
+  background-color: var(--gray-50);
+}
+
+.sectionBgPrimary {
+  background-color: var(--primary-blue);
+  color: var(--white);
+}
+
+.sectionBgPrimary h1,
+.sectionBgPrimary h2,
+.sectionBgPrimary h3,
+.sectionBgPrimary h4,
+.sectionBgPrimary h5,
+.sectionBgPrimary h6 {
+  color: var(--white);
+}
+
+.sectionBgPrimary p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--section-padding-mobile);
+  }
+  
+  .sectionTight {
+    padding: 2rem 0.75rem;
+  }
+  
+  .sectionSpaced {
+    padding: 4rem 0.75rem;
+  }
+}
