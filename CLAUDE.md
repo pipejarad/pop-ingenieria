@@ -16,7 +16,9 @@ el contenido vive en archivos JS bajo `src/content/`.
 - **Next.js 16.1.6** (App Router, build con Turbopack)
 - **React 19.2.3**
 - **JavaScript puro** (sin TypeScript)
-- **CSS Modules** + un `globals.css` con variables CSS de diseño
+- **Estilado en migración:** la **home** usa **Tailwind v4** + **lucide-react** (componentes en
+  `src/components/site/`); el resto del sitio usa **CSS Modules** + estilos inline. Tokens
+  compartidos en `globals.css` (`@theme` para Tailwind + `:root` para `var()`)
 - **next/font** (Inter), sin librerías de UI ni de estado
 - **Resend** para el envío del formulario de contacto (vía Server Action)
 - Despliegue: **Vercel** o Node — ya **no** estático puro (las Server Actions descartan
@@ -40,7 +42,7 @@ Hay ESLint (`npm run lint`) y CI en GitHub Actions (`.github/workflows/ci.yml`: 
 src/
 ├── app/                      # App Router (cada carpeta = ruta)
 │   ├── layout.js             # <html>/<body>, Header + Footer, metadata global y OpenGraph
-│   ├── page.js               # Home (hero, stats, servicios/industrias/proyectos destacados, CTAs)
+│   ├── page.js               # Home — diseño NUEVO (Tailwind + lucide, usa components/site/, hero con imagen)
 │   ├── sitemap.js            # sitemap.xml (rutas estáticas + servicios/[slug])
 │   ├── robots.js             # robots.txt (apunta al sitemap)
 │   ├── globals.css           # variables CSS (:root), reset, tipografía, media queries globales
@@ -57,7 +59,9 @@ src/
 │   ├── Section.jsx           # <section> + Container (spacing y background configurables)
 │   ├── Card.jsx              # Card compuesto: Card.Header/Body/Title/Description/Icon/Actions/Tags
 │   ├── Button.jsx            # botón polimórfico: con `href` renderiza <a>, si no <button>
-│   └── ContactForm.jsx       # 'use client' — formulario de contacto (useActionState + Server Action)
+│   ├── ContactForm.jsx       # 'use client' — formulario de contacto (useActionState + Server Action)
+│   └── site/                 # ⭐ componentes del diseño NUEVO (Tailwind): Header, Footer, Container, Section, Button, Card
+│                             #    El layout usa site/Header y site/Footer (globales). Los Header/Footer viejos quedan sin uso.
 └── content/                  # ÚNICA fuente de datos del sitio
     ├── site.js               # siteConfig: nombre, contacto, stats, navigation
     ├── services.js           # services[] + featuredServices (los que tienen featured:true)
