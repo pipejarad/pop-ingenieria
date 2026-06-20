@@ -154,3 +154,8 @@ export const services = [
 
 // Servicios destacados para homepage
 export const featuredServices = services.filter((service) => service.featured);
+
+// Buscar un servicio por su id (para la ruta /servicios/[slug])
+export function getServiceBySlug(slug) {
+  return services.find((service) => service.id === slug);
+}
