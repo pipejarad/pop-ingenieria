@@ -30,134 +30,20 @@ export default function ProyectosPage() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             gap: "2rem",
           }}
         >
           {projects.map((project) => (
             <Card key={project.id} variant="project">
               <Card.Header>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <Card.Title style={{ flex: 1 }}>{project.title}</Card.Title>
-                  <span
-                    style={{
-                      fontSize: "0.75rem",
-                      color: "var(--gray-500)",
-                      whiteSpace: "nowrap",
-                      marginLeft: "1rem",
-                    }}
-                  >
-                    {project.year}
-                  </span>
-                </div>
-                <Card.Description>{project.summary}</Card.Description>
+                <Card.Title>{project.title}</Card.Title>
               </Card.Header>
-              <Card.Body>
-                <div style={{ marginBottom: "1.5rem" }}>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "0.75rem",
-                      fontSize: "0.875rem",
-                      color: "var(--gray-600)",
-                    }}
-                  >
-                    <div>
-                      <strong style={{ color: "var(--gray-700)" }}>
-                        Cliente:
-                      </strong>
-                      <br />
-                      {project.client}
-                    </div>
-                    <div>
-                      <strong style={{ color: "var(--gray-700)" }}>
-                        Industria:
-                      </strong>
-                      <br />
-                      {project.industry}
-                    </div>
-                    <div>
-                      <strong style={{ color: "var(--gray-700)" }}>
-                        Duración:
-                      </strong>
-                      <br />
-                      {project.duration}
-                    </div>
-                    <div>
-                      <strong style={{ color: "var(--gray-700)" }}>
-                        Tecnologías:
-                      </strong>
-                      <br />
-                      {project.technologies.slice(0, 2).join(", ")}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Results Preview */}
-                {project.results && project.results.metrics && (
-                  <div
-                    style={{
-                      backgroundColor: "var(--gray-50)",
-                      padding: "1rem",
-                      borderRadius: "0.5rem",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    <h4
-                      style={{
-                        fontSize: "0.875rem",
-                        fontWeight: 600,
-                        marginBottom: "0.75rem",
-                        color: "var(--gray-700)",
-                      }}
-                    >
-                      Resultados destacados:
-                    </h4>
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "1fr 1fr",
-                        gap: "0.5rem",
-                        fontSize: "0.75rem",
-                      }}
-                    >
-                      {project.results.metrics
-                        .slice(0, 2)
-                        .map((metric, index) => (
-                          <div key={index}>
-                            <div
-                              style={{
-                                fontWeight: 600,
-                                color: "var(--primary-blue)",
-                              }}
-                            >
-                              {metric.improvement}
-                            </div>
-                            <div style={{ color: "var(--gray-600)" }}>
-                              {metric.metric}
-                            </div>
-                          </div>
-                        ))}
-                    </div>
-                  </div>
-                )}
-
-                <Card.Tags tags={project.tags.slice(0, 3)} />
-
-                <Card.Actions>
-                  <Button variant="primary" href={`/proyectos/${project.id}`}>
-                    Ver Caso Completo
-                  </Button>
-                </Card.Actions>
-              </Card.Body>
+              {project.technologies.length > 0 && (
+                <Card.Body>
+                  <Card.Tags tags={project.technologies} />
+                </Card.Body>
+              )}
             </Card>
           ))}
         </div>
