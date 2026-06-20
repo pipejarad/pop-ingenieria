@@ -18,7 +18,9 @@ el contenido vive en archivos JS bajo `src/content/`.
 - **JavaScript puro** (sin TypeScript)
 - **CSS Modules** + un `globals.css` con variables CSS de diseño
 - **next/font** (Inter), sin librerías de UI ni de estado
-- Despliegue previsto: Vercel / Netlify / hosting estático
+- **Resend** para el envío del formulario de contacto (vía Server Action)
+- Despliegue: **Vercel** o Node — ya **no** estático puro (las Server Actions descartan
+  `output: 'export'`). Configuración por entorno en `.env.example`.
 
 ## Comandos
 
@@ -40,17 +42,20 @@ src/
 │   ├── page.js               # Home (hero, stats, servicios/industrias/proyectos destacados, CTAs)
 │   ├── globals.css           # variables CSS (:root), reset, tipografía, media queries globales
 │   ├── page.module.css       # ⚠️ HUÉRFANO: plantilla de create-next-app, NO se usa
-│   ├── servicios/page.js     # listado completo de servicios
-│   ├── proyectos/page.js     # listado completo de proyectos (casos de éxito)
+│   ├── servicios/page.js     # listado de servicios
+│   ├── servicios/[slug]/page.js  # detalle de cada servicio (SSG, generateStaticParams)
+│   ├── proyectos/page.js     # lista simple de proyectos (sin detalle)
 │   ├── acerca-de/page.js     # historia, misión/visión, proceso, valores
-│   └── contacto/page.js      # métodos de contacto + formulario (NO funcional, ver abajo)
+│   ├── contacto/page.js      # métodos de contacto; renderiza <ContactForm />
+│   └── contacto/actions.js   # 'use server' — Server Action enviarContacto() (Resend)
 ├── components/               # componentes reutilizables (cada uno con su .module.css)
 │   ├── Header.jsx            # 'use client' — nav + menú móvil (useState, usePathname)
 │   ├── Footer.jsx            # server component — usa new Date() para el año
 │   ├── Container.jsx         # wrapper de ancho máximo (maxWidth: default|narrow|wide|fluid)
 │   ├── Section.jsx           # <section> + Container (spacing y background configurables)
 │   ├── Card.jsx              # Card compuesto: Card.Header/Body/Title/Description/Icon/Actions/Tags
-│   └── Button.jsx            # botón polimórfico: con `href` renderiza <a>, si no <button>
+│   ├── Button.jsx            # botón polimórfico: con `href` renderiza <a>, si no <button>
+│   └── ContactForm.jsx       # 'use client' — formulario de contacto (useActionState + Server Action)
 └── content/                  # ÚNICA fuente de datos del sitio
     ├── site.js               # siteConfig: nombre, contacto, stats, navigation
     ├── services.js           # services[] + featuredServices (los que tienen featured:true)
@@ -107,9 +112,10 @@ El enlace de WhatsApp se construye igual en varios componentes:
 ## Trampas / cosas a saber (gotchas)
 
 - `page.module.css` es plantilla muerta: no lo edites esperando que afecte la home.
-- El formulario de `contacto/page.js` **no envía nada**: es un `<form>` sin `action`/`onSubmit`
-  en una página Server Component. Al pulsar "Enviar" se recarga la página. Falta integrar
-  (Formspree/Netlify Forms/EmailJS/backend) y probablemente convertir a client component.
+- El formulario de contacto **ya funciona**: `ContactForm.jsx` (`'use client'`, `useActionState`)
+  envía con la Server Action `contacto/actions.js`, que usa **Resend**. Necesita `RESEND_API_KEY`
+  (ver `.env.example`); sin ella el action devuelve un error claro y no rompe. Incluye honeypot
+  anti-spam y validación de servidor.
 - Datos de contacto en `site.js` son **placeholders** (`phone: "+56 9 XXXX XXXX"`,
   `whatsapp: "569XXXXXXXX"`): los enlaces `tel:` y `wa.me` no funcionan hasta reemplazarlos.
 - `Button.jsx`: cuando recibe `href` renderiza un `<a>` nativo (no `next/link`), perdiendo la
@@ -127,10 +133,11 @@ El enlace de WhatsApp se construye igual en varios componentes:
 
 El proyecto compila; las páginas principales y el detalle de servicio (`servicios/[slug]`)
 funcionan. Para considerarlo "terminado/lanzable" falta, en orden de prioridad: (1) reemplazar los
-placeholders de contacto (teléfono/WhatsApp); (2) hacer funcional el formulario de contacto;
-(3) imágenes reales / `next/image` / og-image; (4) SEO técnico (sitemap, robots, metadataBase,
-JSON-LD); (5) tooling (ESLint, tests). Ya hecho: detalle de servicio, proyectos reales como lista
-simple, secciones de cifras inventadas eliminadas, 20 años, tecnologías y copy del cliente.
+placeholders de contacto (teléfono/WhatsApp); (2) configurar Resend en producción
+(`RESEND_API_KEY` + dominio verificado) y desplegar en Vercel; (3) imágenes reales / `next/image`
+/ og-image; (4) SEO técnico (sitemap, robots, metadataBase, JSON-LD); (5) tooling (ESLint, tests).
+Ya hecho: detalle de servicio, proyectos reales como lista simple, secciones inventadas eliminadas,
+20 años, tecnologías y copy del cliente, **formulario de contacto funcional (Server Action + Resend)**.
 
 Documentación del repo: `README.md` (uso/instalación/personalización para devs), `TODO.md`
 (backlog; su sección "🔴 Bloqueante" lista lo que impide publicar) y

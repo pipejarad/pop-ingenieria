@@ -121,11 +121,13 @@ Todo el contenido del sitio está centralizado en archivos de configuración:
 
 ## 🚀 Despliegue
 
-Este sitio está listo para desplegar en:
+El formulario de contacto usa **Server Actions**, por lo que el sitio necesita un entorno con
+servidor (no hosting estático puro):
 
 - **Vercel** (recomendado para Next.js)
-- **Netlify**
-- **Cualquier hosting estático**
+- **Netlify** u otro host con runtime de Node
+
+Configura las variables de entorno de Resend (ver `.env.example`) en el panel del hosting.
 
 Para Vercel:
 
@@ -168,14 +170,21 @@ Modifica las variables CSS en `src/app/globals.css`:
 }
 ```
 
-## 📧 Integración de Formularios
+## 📧 Formulario de contacto
 
-Para hacer funcional el formulario de contacto, integra con:
+El formulario **ya está implementado** con una **Server Action** (`src/app/contacto/actions.js`)
+que envía el correo mediante **[Resend](https://resend.com)**; el formulario en sí es el
+componente cliente `src/components/ContactForm.jsx`.
 
-1. **Formspree** (recomendado)
-2. **Netlify Forms**
-3. **EmailJS**
-4. **Backend personalizado**
+Para que envíe correos en producción:
+
+1. Crea una cuenta en Resend y genera una API key.
+2. Copia `.env.example` a `.env.local` y completa `RESEND_API_KEY` (y, si quieres,
+   `CONTACT_TO_EMAIL` y `CONTACT_FROM_EMAIL`).
+3. Para remitir desde `@popingenieria.cl`, verifica el dominio en Resend; mientras tanto se usa
+   el remitente de pruebas de Resend.
+
+Sin `RESEND_API_KEY`, el formulario muestra un mensaje de error claro en vez de fallar.
 
 ## 🎯 SEO y Performance
 

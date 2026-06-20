@@ -11,9 +11,9 @@ Detectado en la revisión del proyecto. Esto impide que el sitio salga a producc
       "Ver Caso" (`/proyectos/{id}`) enlazan a páginas que no existen. Crear
       `servicios/[slug]/page.js` y `proyectos/[slug]/page.js` (con `generateStaticParams`), o
       desactivar esos botones mientras tanto.
-- [ ] **Formulario de contacto no envía nada.** `src/app/contacto/page.js` tiene un `<form>` sin
-      `action` ni `onSubmit`. Integrar Formspree/Netlify/handler y quitar la nota de plantilla
-      visible al usuario (líneas ~400-405).
+- [x] **Formulario de contacto funcional.** Implementado con Server Action (`contacto/actions.js`)
+      + Resend y componente cliente `ContactForm.jsx`. Falta configurar `RESEND_API_KEY` en
+      producción (ver `.env.example`).
 - [ ] **Bug de estilos en `Button`.** En `src/components/Button.jsx` el `{...props}` sobrescribe
       el `className` calculado: cuando el padre pasa `className` (el CTA del Header) se pierden
       las clases de variante. Combinar en vez de sobrescribir.
@@ -31,12 +31,12 @@ Detectado en la revisión del proyecto. Esto impide que el sitio salga a producc
 - [ ] Crear `/proyectos/[slug]/page.js` para casos de éxito completos
 - [ ] Implementar `generateStaticParams()` para SEO
 
-### Formulario de Contacto Funcional
+### Formulario de Contacto Funcional ✅ (hecho)
 
-- [ ] Integrar Formspree o Netlify Forms
-- [ ] Agregar validación client-side
-- [ ] Mensaje de confirmación tras envío
-- [ ] Notificación por email al recibir formularios
+- [x] Server Action + Resend (en lugar de Formspree/Netlify)
+- [x] Validación client-side y de servidor (+ honeypot anti-spam)
+- [x] Mensaje de confirmación tras envío
+- [x] Notificación por email (Resend) — requiere `RESEND_API_KEY` en producción
 
 ### Optimización de Imágenes
 
