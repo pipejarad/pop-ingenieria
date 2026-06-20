@@ -31,9 +31,8 @@ export default function Home() {
               color: "var(--gray-600)",
             }}
           >
-            Más de 15 años optimizando procesos industriales con control e
-            instrumentación de última generación. Soluciones integrales para
-            minería, energía, petroquímica y manufactura.
+            Con más de 20 años instalando, renovando y mejorando procesos
+            industriales. Soluciones integrales para la minería y la industria.
           </p>
           <div
             style={{
