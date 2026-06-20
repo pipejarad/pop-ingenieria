@@ -40,6 +40,8 @@ src/
 ├── app/                      # App Router (cada carpeta = ruta)
 │   ├── layout.js             # <html>/<body>, Header + Footer, metadata global y OpenGraph
 │   ├── page.js               # Home (hero, stats, servicios/industrias/proyectos destacados, CTAs)
+│   ├── sitemap.js            # sitemap.xml (rutas estáticas + servicios/[slug])
+│   ├── robots.js             # robots.txt (apunta al sitemap)
 │   ├── globals.css           # variables CSS (:root), reset, tipografía, media queries globales
 │   ├── page.module.css       # ⚠️ HUÉRFANO: plantilla de create-next-app, NO se usa
 │   ├── servicios/page.js     # listado de servicios
@@ -135,9 +137,10 @@ El proyecto compila; las páginas principales y el detalle de servicio (`servici
 funcionan. Para considerarlo "terminado/lanzable" falta, en orden de prioridad: (1) reemplazar los
 placeholders de contacto (teléfono/WhatsApp); (2) configurar Resend en producción
 (`RESEND_API_KEY` + dominio verificado) y desplegar en Vercel; (3) imágenes reales / `next/image`
-/ og-image; (4) SEO técnico (sitemap, robots, metadataBase, JSON-LD); (5) tooling (ESLint, tests).
+/ og-image y JSON-LD (requieren assets/datos reales); (4) tooling (ESLint, tests).
 Ya hecho: detalle de servicio, proyectos reales como lista simple, secciones inventadas eliminadas,
-20 años, tecnologías y copy del cliente, **formulario de contacto funcional (Server Action + Resend)**.
+20 años, tecnologías y copy del cliente, formulario de contacto funcional (Server Action + Resend),
+**SEO técnico básico (sitemap, robots, metadataBase, metadata de la home)**.
 
 Documentación del repo: `README.md` (uso/instalación/personalización para devs), `TODO.md`
 (backlog; su sección "🔴 Bloqueante" lista lo que impide publicar) y

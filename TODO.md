@@ -56,11 +56,12 @@ Detectado en la revisión del proyecto. Esto impide que el sitio salga a producc
 
 ### SEO y Analytics
 
+- [x] Sitemap automático (`app/sitemap.js`) y `robots.txt` (`app/robots.js`)
+- [x] `metadataBase` y metadata propia de la home
+- [ ] Structured data (JSON-LD) — requiere datos de contacto reales
+- [ ] Meta tags Open Graph mejoradas (falta `og:image`)
 - [ ] Google Analytics 4
 - [ ] Google Search Console
-- [ ] Sitemap automático
-- [ ] Structured data (JSON-LD)
-- [ ] Meta tags Open Graph mejoradas
 
 ### Performance
 

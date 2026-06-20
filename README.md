@@ -190,13 +190,13 @@ Sin `RESEND_API_KEY`, el formulario muestra un mensaje de error claro en vez de 
 
 Estado actual:
 
-- Metadata por página (la **home** aún no tiene metadata propia)
-- Open Graph básico en el layout (sin imagen `og:image` todavía)
+- Metadata por página, incluida la **home**; `metadataBase` configurado
+- `sitemap.xml` (`app/sitemap.js`) y `robots.txt` (`app/robots.js`)
+- Open Graph básico en el layout (falta `og:image`)
 - Estructura semántica HTML5, `lang="es"` y un único `<h1>` por página
-- URLs amigables
 
-Pendiente: metadata de la home, `sitemap.js`, `robots.js`, imagen Open Graph, JSON-LD
-(Organization) y revisión de Core Web Vitals.
+Pendiente: imagen Open Graph, JSON-LD (Organization, cuando haya datos de contacto reales) y
+revisión de Core Web Vitals.
 
 ---
 
