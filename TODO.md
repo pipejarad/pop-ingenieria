@@ -94,7 +94,7 @@ Detectado en la revisión del proyecto. Esto impide que el sitio salga a producc
 - [ ] Migración a TypeScript
 - [ ] Tests unitarios (Jest)
 - [ ] Tests E2E (Playwright)
-- [ ] CI/CD pipeline
+- [x] CI (GitHub Actions: lint + build) — falta deploy automático
 - [ ] Monitoring y alertas
 
 ## 🔧 Configuraciones Pendientes
