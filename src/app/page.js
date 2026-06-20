@@ -8,6 +8,14 @@ import { featuredServices } from "@/content/services";
 import { featuredProjects } from "@/content/projects";
 import { featuredIndustries } from "@/content/industries";
 
+export const metadata = {
+  title: {
+    absolute: "POP Ingeniería — Automatización Industrial y Control de Procesos",
+  },
+  description:
+    "Más de 20 años instalando, renovando y mejorando procesos industriales. Control e instrumentación, PLC/DCS, variadores y protecciones para la minería y la industria.",
+};
+
 export default function Home() {
   const ctaWhatsAppLink = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`;
 
