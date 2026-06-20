@@ -1,6 +1,22 @@
-import Section from "@/components/Section";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
+import {
+  ArrowRight,
+  Activity,
+  Zap,
+  CircuitBoard,
+  Cpu,
+  Share2,
+  ClipboardCheck,
+  Cog,
+  MessageCircle,
+  Mail,
+} from "lucide-react";
+
+import Section from "@/components/site/Section";
+import Container from "@/components/site/Container";
+import Button from "@/components/site/Button";
+import Card from "@/components/site/Card";
+
+import { siteConfig } from "@/content/site";
 import { services } from "@/content/services";
 
 export const metadata = {
@@ -9,121 +25,127 @@ export const metadata = {
     "Servicios especializados en control e instrumentación industrial, PLCs, DCS, variadores de velocidad y protección con relés inteligentes.",
 };
 
+const serviceIcons = {
+  "control-instrumentacion": Activity,
+  "variadores-velocidad": Zap,
+  "reles-inteligentes": CircuitBoard,
+  "plc-dcs": Cpu,
+  "integracion-sistemas": Share2,
+  "consultoria-asesoria": ClipboardCheck,
+};
+
 export default function ServiciosPage() {
+  const wa = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+    siteConfig.whatsappMessage
+  )}`;
+
   return (
-    <main>
-      {/* Header */}
-      <Section background="gray">
-        <div
-          style={{ textAlign: "center", maxWidth: "800px", margin: "0 auto" }}
-        >
-          <h1>Nuestros Servicios</h1>
-          <p style={{ fontSize: "1.25rem" }}>
-            Soluciones de acuerdo con la complejidad del proceso y la simplicidad
-            que nos brinda la tecnología. Más de 20 años de experiencia en
-            automatización industrial.
-          </p>
-        </div>
-      </Section>
-
-      {/* Services Grid */}
-      <Section>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-            gap: "2rem",
-          }}
-        >
-          {services.map((service) => (
-            <Card key={service.id} variant="service">
-              <Card.Header>
-                <Card.Icon>{service.icon}</Card.Icon>
-                <Card.Title>{service.title}</Card.Title>
-                <Card.Description>{service.description}</Card.Description>
-              </Card.Header>
-              <Card.Body>
-                <div style={{ marginBottom: "1rem" }}>
-                  <h4
-                    style={{
-                      fontSize: "1rem",
-                      marginBottom: "0.5rem",
-                      color: "var(--gray-700)",
-                    }}
-                  >
-                    Beneficios principales:
-                  </h4>
-                  <ul
-                    style={{
-                      margin: 0,
-                      paddingLeft: "1.25rem",
-                      color: "var(--gray-600)",
-                    }}
-                  >
-                    {service.benefits.slice(0, 3).map((benefit, index) => (
-                      <li key={index} style={{ marginBottom: "0.25rem" }}>
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Card.Tags tags={service.technologies.slice(0, 4)} />
-
-                <div style={{ marginBottom: "1rem" }}>
-                  <div
-                    style={{ fontSize: "0.875rem", color: "var(--gray-500)" }}
-                  >
-                    <strong>Aplicaciones:</strong>{" "}
-                    {service.applications.join(", ")}
-                  </div>
-                </div>
-
-                <Card.Actions>
-                  <Button variant="primary" href={`/servicios/${service.id}`}>
-                    Ver Detalles
-                  </Button>
-                </Card.Actions>
-              </Card.Body>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <Section background="primary">
-        <div
-          style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto" }}
-        >
-          <h2>¿Necesita una solución personalizada?</h2>
-          <p
-            style={{
-              fontSize: "1.125rem",
-              marginBottom: "2rem",
-              opacity: 0.95,
-            }}
-          >
-            Cada proceso industrial es único. Contacte con nuestros expertos
-            para desarrollar una solución que se adapte perfectamente a sus
-            necesidades.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <Button variant="accent" size="large" href="/contacto">
-              📧 Consulta Técnica
-            </Button>
-            <Button variant="secondary" size="large" href="/proyectos">
-              Ver Casos de Éxito
-            </Button>
+    <main className="flex-1">
+      {/* HERO */}
+      <section className="border-b border-gray-200">
+        <Container className="py-20 sm:py-24 lg:py-28">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand mb-5">
+              Nuestros servicios
+            </p>
+            <h1 className="text-4xl sm:text-5xl font-semibold text-gray-900 leading-[1.05] tracking-tight">
+              Soluciones de automatización industrial
+            </h1>
+            <p className="mt-6 text-lg text-gray-600">
+              Soluciones de acuerdo con la complejidad del proceso y la
+              simplicidad que nos brinda la tecnología. Más de 20 años de
+              experiencia en automatización industrial.
+            </p>
           </div>
+        </Container>
+      </section>
+
+      {/* GRID DE SERVICIOS */}
+      <Section
+        id="servicios"
+        bg="muted"
+        eyebrow="Catálogo completo"
+        title="Todo lo que podemos hacer por su planta"
+        intro="Desde la instrumentación de campo hasta la supervisión y las protecciones eléctricas, cubrimos el ciclo completo de la automatización."
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {services.map((svc) => {
+            const Icon = serviceIcons[svc.id] || Cog;
+            return (
+              <Card key={svc.id} interactive className="flex flex-col">
+                <div className="grid place-items-center h-11 w-11 rounded-lg bg-brand text-white mb-5">
+                  <Icon size={22} strokeWidth={1.75} />
+                </div>
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                  {svc.title}
+                </h2>
+                <p className="text-[15px] text-gray-600 mb-5">
+                  {svc.shortDescription}
+                </p>
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {svc.technologies.slice(0, 4).map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs text-gray-600 bg-gray-100 px-2.5 py-1 rounded-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={`/servicios/${svc.id}`}
+                  className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:gap-2.5 transition-all"
+                >
+                  Ver detalles <ArrowRight size={15} />
+                </a>
+              </Card>
+            );
+          })}
         </div>
       </Section>
+
+      {/* CTA FINAL */}
+      <section className="bg-brand text-white">
+        <Container className="py-20 sm:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-4">
+                Conversemos
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-semibold text-white leading-tight max-w-xl">
+                ¿Necesita una solución personalizada?
+              </h2>
+              <p className="mt-5 text-white/75 text-lg max-w-lg">
+                Cada proceso industrial es único. Cuéntenos qué necesita
+                evaluar, mejorar o automatizar y desarrollamos una solución a la
+                medida de su operación.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-stretch">
+              <Button
+                variant="primary"
+                size="lg"
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="justify-center"
+              >
+                <MessageCircle size={18} />
+                Escribir por WhatsApp
+              </Button>
+              <Button
+                variant="outline-light"
+                size="lg"
+                href="/contacto"
+                className="justify-center"
+              >
+                <Mail size={18} />
+                Enviar por formulario
+              </Button>
+            </div>
+          </div>
+        </Container>
+      </section>
     </main>
   );
 }

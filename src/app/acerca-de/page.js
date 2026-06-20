@@ -1,5 +1,25 @@
-import Section from "@/components/Section";
-import Button from "@/components/Button";
+import {
+  ArrowRight,
+  Cog,
+  Target,
+  Telescope,
+  ClipboardCheck,
+  PencilRuler,
+  Wrench,
+  Rocket,
+  LifeBuoy,
+  Award,
+  Handshake,
+  FlaskConical,
+  Zap,
+  MessageCircle,
+} from "lucide-react";
+
+import Section from "@/components/site/Section";
+import Container from "@/components/site/Container";
+import Button from "@/components/site/Button";
+import Card from "@/components/site/Card";
+
 import { siteConfig } from "@/content/site";
 
 export const metadata = {
@@ -8,34 +28,95 @@ export const metadata = {
     "Más de 20 años de experiencia en automatización industrial. Conozca nuestra historia, misión y enfoque técnico especializado.",
 };
 
+const steps = [
+  {
+    icon: ClipboardCheck,
+    title: "Análisis y Diagnóstico",
+    description:
+      "Evaluamos en profundidad su proceso actual, identificando oportunidades de mejora y definiendo objetivos claros.",
+  },
+  {
+    icon: PencilRuler,
+    title: "Diseño de Solución",
+    description:
+      "Desarrollamos una propuesta técnica detallada, seleccionando las mejores tecnologías para sus requerimientos específicos.",
+  },
+  {
+    icon: Wrench,
+    title: "Implementación",
+    description:
+      "Ejecutamos la solución con metodologías probadas, minimizando impactos en la operación y garantizando la calidad.",
+  },
+  {
+    icon: Rocket,
+    title: "Puesta en Marcha",
+    description:
+      "Realizamos pruebas exhaustivas, capacitamos a su personal y aseguramos una transición exitosa.",
+  },
+  {
+    icon: LifeBuoy,
+    title: "Soporte Continuo",
+    description:
+      "Brindamos soporte técnico especializado y mantenimiento preventivo para garantizar el rendimiento óptimo.",
+  },
+];
+
+const values = [
+  {
+    icon: Award,
+    title: "Excelencia Técnica",
+    description:
+      "Buscamos siempre la mejor solución técnica, utilizando tecnologías de vanguardia y mejores prácticas internacionales.",
+  },
+  {
+    icon: Handshake,
+    title: "Compromiso",
+    description:
+      "Nos comprometemos con el éxito de cada proyecto, trabajando como socios estratégicos de nuestros clientes.",
+  },
+  {
+    icon: FlaskConical,
+    title: "Innovación",
+    description:
+      "Mantenemos actualización constante con las últimas tecnologías para ofrecer soluciones innovadoras.",
+  },
+  {
+    icon: Zap,
+    title: "Eficiencia",
+    description:
+      "Optimizamos tiempos y recursos, entregando soluciones efectivas que generan valor inmediato.",
+  },
+];
+
 export default function AcercaDePage() {
-  const ctaWhatsAppLink = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`;
+  const wa = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+    siteConfig.whatsappMessage
+  )}`;
 
   return (
-    <main>
-      {/* Header */}
-      <Section background="gray">
-        <div
-          style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}
-        >
-          <h1>Acerca de POP Ingeniería</h1>
-          <p style={{ fontSize: "1.25rem" }}>{siteConfig.tagline}</p>
-        </div>
-      </Section>
+    <main className="flex-1">
+      {/* HERO */}
+      <section className="relative overflow-hidden border-b border-gray-200">
+        <Container className="py-20 sm:py-24 lg:py-28 max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand mb-5">
+            Acerca de nosotros
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-semibold text-gray-900 leading-[1.05] tracking-tight">
+            Acerca de POP Ingeniería
+          </h1>
+          <p className="mt-6 text-lg text-gray-600">{siteConfig.tagline}</p>
+        </Container>
+      </section>
 
-      {/* Company Story */}
-      <Section>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "4rem",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <h2>Nuestra Historia</h2>
-            <p style={{ fontSize: "1.125rem", marginBottom: "1.5rem" }}>
+      {/* NUESTRA HISTORIA */}
+      <Section
+        id="historia"
+        eyebrow="Quiénes somos"
+        title="Nuestra Historia"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-16 items-center">
+          <div className="space-y-5 text-[15px] sm:text-base text-gray-600">
+            <p className="text-lg text-gray-700">
               Con más de 20 años de experiencia en automatización industrial,
               POP Ingeniería nació de la visión de ofrecer soluciones técnicas
               de excelencia que optimicen los procesos industriales de nuestros
@@ -53,20 +134,15 @@ export default function AcercaDePage() {
               líderes en cada sector.
             </p>
           </div>
-          <div
-            style={{
-              backgroundColor: "var(--primary-blue)",
-              color: "var(--white)",
-              padding: "3rem 2rem",
-              borderRadius: "1rem",
-              textAlign: "center",
-            }}
-          >
-            <div style={{ fontSize: "4rem", marginBottom: "1rem" }}>⚙️</div>
-            <h3 style={{ marginBottom: "1rem", color: "var(--white)" }}>
+
+          <div className="rounded-2xl bg-brand text-white p-10 sm:p-12 text-center">
+            <div className="grid place-items-center h-14 w-14 rounded-xl bg-white/10 text-white mx-auto mb-6">
+              <Cog size={26} strokeWidth={1.75} />
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-3">
               Expertise Técnico
             </h3>
-            <p style={{ fontSize: "1.125rem", opacity: 0.95 }}>
+            <p className="text-white/80 text-[15px]">
               Especialización profunda en control de procesos, instrumentación y
               sistemas de automatización industrial de última generación.
             </p>
@@ -74,236 +150,142 @@ export default function AcercaDePage() {
         </div>
       </Section>
 
-      {/* Mission & Vision */}
-      <Section background="gray">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-            gap: "3rem",
-          }}
-        >
-          <div
-            style={{
-              padding: "2.5rem",
-              backgroundColor: "var(--white)",
-              borderRadius: "1rem",
-              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "3rem",
-                marginBottom: "1.5rem",
-                textAlign: "center",
-              }}
-            >
-              🎯
+      {/* MISIÓN Y VISIÓN */}
+      <Section
+        id="mision-vision"
+        bg="muted"
+        eyebrow="Propósito"
+        title="Misión y Visión"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+          <Card className="flex flex-col">
+            <div className="grid place-items-center h-11 w-11 rounded-lg bg-brand text-white mb-5">
+              <Target size={22} strokeWidth={1.75} />
             </div>
-            <h3 style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Nuestra Misión
             </h3>
-            <p style={{ textAlign: "center", fontSize: "1.125rem" }}>
+            <p className="text-[15px] text-gray-600">
               Optimizar procesos industriales mediante soluciones de
               automatización innovadoras, generando valor agregado y mejorando
               la competitividad de nuestros clientes.
             </p>
-          </div>
+          </Card>
 
-          <div
-            style={{
-              padding: "2.5rem",
-              backgroundColor: "var(--white)",
-              borderRadius: "1rem",
-              boxShadow: "0 4px 15px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <div
-              style={{
-                fontSize: "3rem",
-                marginBottom: "1.5rem",
-                textAlign: "center",
-              }}
-            >
-              🔮
+          <Card className="flex flex-col">
+            <div className="grid place-items-center h-11 w-11 rounded-lg bg-brand text-white mb-5">
+              <Telescope size={22} strokeWidth={1.75} />
             </div>
-            <h3 style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
               Nuestra Visión
             </h3>
-            <p style={{ textAlign: "center", fontSize: "1.125rem" }}>
+            <p className="text-[15px] text-gray-600">
               Ser el referente técnico en automatización industrial en Chile,
               reconocidos por la excelencia de nuestras soluciones y el
               compromiso con nuestros clientes.
             </p>
-          </div>
+          </Card>
         </div>
       </Section>
 
-      {/* How We Work */}
-      <Section>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h2>Nuestro Enfoque de Trabajo</h2>
-          <p
-            style={{
-              fontSize: "1.125rem",
-              maxWidth: "700px",
-              margin: "0 auto",
-            }}
-          >
-            Cada proyecto es único y requiere un enfoque personalizado. Nuestro
-            proceso garantiza resultados exitosos y sostenibles.
-          </p>
-        </div>
+      {/* NUESTRO ENFOQUE DE TRABAJO */}
+      <Section
+        id="enfoque"
+        eyebrow="Cómo trabajamos"
+        title="Nuestro Enfoque de Trabajo"
+        intro="Cada proyecto es único y requiere un enfoque personalizado. Nuestro proceso garantiza resultados exitosos y sostenibles."
+      >
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <li key={step.title} className="relative">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs font-semibold text-gray-400 tabular-nums">
+                    0{i + 1}
+                  </span>
+                  <span className="h-px flex-1 bg-gray-200" />
+                </div>
+                <div className="grid place-items-center h-11 w-11 rounded-lg bg-brand/5 text-brand mb-5">
+                  <Icon size={22} strokeWidth={1.75} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600 text-[15px]">{step.description}</p>
+              </li>
+            );
+          })}
+        </ol>
+      </Section>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "2rem",
-          }}
-        >
-          {[
-            {
-              step: "01",
-              title: "Análisis y Diagnóstico",
-              description:
-                "Evaluamos en profundidad su proceso actual, identificando oportunidades de mejora y definiendo objetivos claros.",
-            },
-            {
-              step: "02",
-              title: "Diseño de Solución",
-              description:
-                "Desarrollamos una propuesta técnica detallada, seleccionando las mejores tecnologías para sus requerimientos específicos.",
-            },
-            {
-              step: "03",
-              title: "Implementación",
-              description:
-                "Ejecutamos la solución con metodologías probadas, minimizando impactos en la operación y garantizando la calidad.",
-            },
-            {
-              step: "04",
-              title: "Puesta en Marcha",
-              description:
-                "Realizamos pruebas exhaustivas, capacitamos a su personal y aseguramos una transición exitosa.",
-            },
-            {
-              step: "05",
-              title: "Soporte Continuo",
-              description:
-                "Brindamos soporte técnico especializado y mantenimiento preventivo para garantizar el rendimiento óptimo.",
-            },
-          ].map((item, index) => (
-            <div key={index} style={{ textAlign: "center" }}>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundColor: "var(--primary-blue)",
-                  color: "var(--white)",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 1rem",
-                  fontSize: "1.25rem",
-                  fontWeight: "bold",
-                }}
+      {/* VALORES */}
+      <Section
+        id="valores"
+        bg="muted"
+        eyebrow="Lo que nos define"
+        title="Nuestros Valores"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {values.map((value) => {
+            const Icon = value.icon;
+            return (
+              <Card key={value.title} className="flex flex-col">
+                <div className="grid place-items-center h-11 w-11 rounded-lg bg-brand text-white mb-5">
+                  <Icon size={22} strokeWidth={1.75} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {value.title}
+                </h3>
+                <p className="text-[15px] text-gray-600">{value.description}</p>
+              </Card>
+            );
+          })}
+        </div>
+      </Section>
+
+      {/* CTA FINAL */}
+      <section className="bg-brand text-white">
+        <Container className="py-20 sm:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-4">
+                Conversemos
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-semibold text-white leading-tight max-w-xl">
+                ¿Listo para trabajar juntos?
+              </h2>
+              <p className="mt-5 text-white/75 text-lg max-w-lg">
+                Descubra cómo nuestro enfoque técnico especializado puede
+                optimizar sus procesos industriales y generar valor para su
+                empresa.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-stretch">
+              <Button
+                variant="primary"
+                size="lg"
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="justify-center"
               >
-                {item.step}
-              </div>
-              <h3 style={{ marginBottom: "1rem" }}>{item.title}</h3>
-              <p>{item.description}</p>
+                <MessageCircle size={18} />
+                Conversemos
+              </Button>
+              <Button
+                variant="outline-light"
+                size="lg"
+                href="/proyectos"
+                className="justify-center"
+              >
+                Ver Nuestros Proyectos
+                <ArrowRight size={18} />
+              </Button>
             </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Values */}
-      <Section background="primary">
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h2 style={{ color: "var(--white)" }}>Nuestros Valores</h2>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "2rem",
-          }}
-        >
-          {[
-            {
-              icon: "🎯",
-              title: "Excelencia Técnica",
-              description:
-                "Buscamos siempre la mejor solución técnica, utilizando tecnologías de vanguardia y mejores prácticas internacionales.",
-            },
-            {
-              icon: "🤝",
-              title: "Compromiso",
-              description:
-                "Nos comprometemos con el éxito de cada proyecto, trabajando como socios estratégicos de nuestros clientes.",
-            },
-            {
-              icon: "🔬",
-              title: "Innovación",
-              description:
-                "Mantenemos actualización constante con las últimas tecnologías para ofrecer soluciones innovadoras.",
-            },
-            {
-              icon: "⚡",
-              title: "Eficiencia",
-              description:
-                "Optimizamos tiempos y recursos, entregando soluciones efectivas que generan valor inmediato.",
-            },
-          ].map((value, index) => (
-            <div key={index} style={{ textAlign: "center" }}>
-              <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>
-                {value.icon}
-              </div>
-              <h3 style={{ marginBottom: "1rem", color: "var(--white)" }}>
-                {value.title}
-              </h3>
-              <p style={{ opacity: 0.95 }}>{value.description}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <Section>
-        <div
-          style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}
-        >
-          <h2>¿Listo para trabajar juntos?</h2>
-          <p style={{ fontSize: "1.25rem", marginBottom: "2rem" }}>
-            Descubra cómo nuestro enfoque técnico especializado puede optimizar
-            sus procesos industriales y generar valor para su empresa.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <Button
-              variant="accent"
-              size="large"
-              href={ctaWhatsAppLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              📱 Conversemos
-            </Button>
-            <Button variant="secondary" size="large" href="/proyectos">
-              Ver Nuestros Proyectos
-            </Button>
           </div>
-        </div>
-      </Section>
+        </Container>
+      </section>
     </main>
   );
 }

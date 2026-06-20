@@ -1,31 +1,13 @@
 "use client";
 
 import { useActionState } from "react";
-import Button from "@/components/Button";
+import { CheckCircle2, AlertCircle } from "lucide-react";
+import Button from "@/components/site/Button";
 import { enviarContacto } from "@/app/contacto/actions";
 
-const labelStyle = {
-  display: "block",
-  marginBottom: "0.5rem",
-  fontWeight: 600,
-  color: "var(--gray-700)",
-};
-
-const fieldStyle = {
-  width: "100%",
-  padding: "0.75rem",
-  border: "1px solid var(--gray-300)",
-  borderRadius: "0.5rem",
-  fontSize: "1rem",
-  fontFamily: "inherit",
-};
-
-// Dos columnas que colapsan a una en pantallas estrechas.
-const rowStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gap: "1rem",
-};
+const fieldClass =
+  "w-full rounded-[10px] border border-gray-300 px-3.5 py-2.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent";
+const labelClass = "block text-sm font-medium text-gray-700 mb-1.5";
 
 const initialState = { ok: null, error: null };
 
@@ -40,19 +22,18 @@ export default function ContactForm() {
       <div
         role="status"
         aria-live="polite"
-        style={{
-          padding: "2rem",
-          backgroundColor: "var(--gray-50)",
-          border: "1px solid var(--gray-200)",
-          borderRadius: "0.5rem",
-          textAlign: "center",
-        }}
+        className="rounded-xl border border-gray-200 bg-gray-50 p-8 text-center"
       >
-        <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }} aria-hidden="true">
-          ✅
-        </div>
-        <h3 style={{ marginBottom: "0.5rem" }}>¡Gracias por tu mensaje!</h3>
-        <p style={{ margin: 0 }}>
+        <CheckCircle2
+          size={40}
+          strokeWidth={1.75}
+          className="mx-auto mb-3 text-brand"
+          aria-hidden="true"
+        />
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          ¡Gracias por tu mensaje!
+        </h3>
+        <p className="text-[15px] text-gray-600">
           Hemos recibido tu consulta y te contactaremos a la brevedad.
         </p>
       </div>
@@ -60,10 +41,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form
-      action={formAction}
-      style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
-    >
+    <form action={formAction} className="flex flex-col gap-5">
       {/* Honeypot anti-bot: oculto para personas, tentador para bots. No rellenar. */}
       <input
         type="text"
@@ -71,56 +49,70 @@ export default function ContactForm() {
         tabIndex={-1}
         autoComplete="off"
         aria-hidden="true"
-        style={{
-          position: "absolute",
-          left: "-9999px",
-          width: "1px",
-          height: "1px",
-          opacity: 0,
-        }}
+        className="absolute left-[-9999px] h-px w-px opacity-0"
       />
 
-      <div style={rowStyle}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="nombre" style={labelStyle}>
+          <label htmlFor="nombre" className={labelClass}>
             Nombre *
           </label>
-          <input type="text" id="nombre" name="nombre" required style={fieldStyle} />
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+            className={fieldClass}
+          />
         </div>
         <div>
-          <label htmlFor="empresa" style={labelStyle}>
+          <label htmlFor="empresa" className={labelClass}>
             Empresa
           </label>
-          <input type="text" id="empresa" name="empresa" style={fieldStyle} />
+          <input
+            type="text"
+            id="empresa"
+            name="empresa"
+            className={fieldClass}
+          />
         </div>
       </div>
 
-      <div style={rowStyle}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="email" style={labelStyle}>
+          <label htmlFor="email" className={labelClass}>
             Email *
           </label>
-          <input type="email" id="email" name="email" required style={fieldStyle} />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            className={fieldClass}
+          />
         </div>
         <div>
-          <label htmlFor="telefono" style={labelStyle}>
+          <label htmlFor="telefono" className={labelClass}>
             Teléfono
           </label>
-          <input type="tel" id="telefono" name="telefono" style={fieldStyle} />
+          <input
+            type="tel"
+            id="telefono"
+            name="telefono"
+            className={fieldClass}
+          />
         </div>
       </div>
 
       <div>
-        <label htmlFor="servicio" style={labelStyle}>
+        <label htmlFor="servicio" className={labelClass}>
           Servicio de Interés
         </label>
-        <select
-          id="servicio"
-          name="servicio"
-          style={{ ...fieldStyle, backgroundColor: "var(--white)" }}
-        >
+        <select id="servicio" name="servicio" className={fieldClass}>
           <option value="">Seleccione un servicio</option>
-          <option value="control-instrumentacion">Control e Instrumentación</option>
+          <option value="control-instrumentacion">
+            Control e Instrumentación
+          </option>
           <option value="variadores-velocidad">Variadores de Velocidad</option>
           <option value="reles-inteligentes">Protección con Relés</option>
           <option value="plc-dcs">Programación PLC/DCS</option>
@@ -130,7 +122,7 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="mensaje" style={labelStyle}>
+        <label htmlFor="mensaje" className={labelClass}>
           Descripción del Proyecto *
         </label>
         <textarea
@@ -139,7 +131,7 @@ export default function ContactForm() {
           rows={5}
           required
           placeholder="Describa su proyecto, proceso actual, desafíos técnicos y objetivos esperados..."
-          style={{ ...fieldStyle, resize: "vertical" }}
+          className={`${fieldClass} resize-y`}
         />
       </div>
 
@@ -147,25 +139,24 @@ export default function ContactForm() {
         <div
           role="alert"
           aria-live="assertive"
-          style={{
-            padding: "1rem",
-            backgroundColor: "#fef2f2",
-            border: "1px solid #fecaca",
-            borderRadius: "0.5rem",
-            color: "#b91c1c",
-            fontSize: "0.875rem",
-          }}
+          className="flex items-start gap-2.5 rounded-[10px] border border-red-200 bg-red-50 p-4 text-sm text-red-700"
         >
-          {state.error}
+          <AlertCircle
+            size={18}
+            strokeWidth={1.75}
+            className="mt-0.5 shrink-0"
+            aria-hidden="true"
+          />
+          <span>{state.error}</span>
         </div>
       )}
 
       <Button
         type="submit"
         variant="primary"
-        size="large"
-        fullWidth
+        size="lg"
         disabled={isPending}
+        className="w-full justify-center"
       >
         {isPending ? "Enviando…" : "Enviar Consulta"}
       </Button>
