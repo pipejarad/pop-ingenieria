@@ -1,6 +1,7 @@
 import Section from "@/components/Section";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import ContactForm from "@/components/ContactForm";
 import { siteConfig } from "@/content/site";
 
 export const metadata = {
@@ -118,8 +119,8 @@ export default function ContactoPage() {
                     </div>
                   </div>
                   <p style={{ marginBottom: "1rem" }}>
-                    Envíe información detallada de su proyecto para una
-                    respuesta técnica completa y personalizada.
+                    Envíe información detallada de su proyecto para una respuesta
+                    técnica completa y personalizada.
                   </p>
                   <Button
                     variant="primary"
@@ -159,8 +160,8 @@ export default function ContactoPage() {
                     </div>
                   </div>
                   <p style={{ marginBottom: "1rem" }}>
-                    Llame directamente para emergencias o consultas que
-                    requieran atención inmediata.
+                    Llame directamente para emergencias o consultas que requieran
+                    atención inmediata.
                   </p>
                   <Button
                     variant="secondary"
@@ -180,240 +181,7 @@ export default function ContactoPage() {
 
             <Card>
               <Card.Body>
-                <form
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1.5rem",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "1rem",
-                    }}
-                  >
-                    <div>
-                      <label
-                        htmlFor="nombre"
-                        style={{
-                          display: "block",
-                          marginBottom: "0.5rem",
-                          fontWeight: 600,
-                          color: "var(--gray-700)",
-                        }}
-                      >
-                        Nombre *
-                      </label>
-                      <input
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        required
-                        style={{
-                          width: "100%",
-                          padding: "0.75rem",
-                          border: "1px solid var(--gray-300)",
-                          borderRadius: "0.5rem",
-                          fontSize: "1rem",
-                          fontFamily: "inherit",
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="empresa"
-                        style={{
-                          display: "block",
-                          marginBottom: "0.5rem",
-                          fontWeight: 600,
-                          color: "var(--gray-700)",
-                        }}
-                      >
-                        Empresa
-                      </label>
-                      <input
-                        type="text"
-                        id="empresa"
-                        name="empresa"
-                        style={{
-                          width: "100%",
-                          padding: "0.75rem",
-                          border: "1px solid var(--gray-300)",
-                          borderRadius: "0.5rem",
-                          fontSize: "1rem",
-                          fontFamily: "inherit",
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
-                      gap: "1rem",
-                    }}
-                  >
-                    <div>
-                      <label
-                        htmlFor="email"
-                        style={{
-                          display: "block",
-                          marginBottom: "0.5rem",
-                          fontWeight: 600,
-                          color: "var(--gray-700)",
-                        }}
-                      >
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        style={{
-                          width: "100%",
-                          padding: "0.75rem",
-                          border: "1px solid var(--gray-300)",
-                          borderRadius: "0.5rem",
-                          fontSize: "1rem",
-                          fontFamily: "inherit",
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="telefono"
-                        style={{
-                          display: "block",
-                          marginBottom: "0.5rem",
-                          fontWeight: 600,
-                          color: "var(--gray-700)",
-                        }}
-                      >
-                        Teléfono
-                      </label>
-                      <input
-                        type="tel"
-                        id="telefono"
-                        name="telefono"
-                        style={{
-                          width: "100%",
-                          padding: "0.75rem",
-                          border: "1px solid var(--gray-300)",
-                          borderRadius: "0.5rem",
-                          fontSize: "1rem",
-                          fontFamily: "inherit",
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="servicio"
-                      style={{
-                        display: "block",
-                        marginBottom: "0.5rem",
-                        fontWeight: 600,
-                        color: "var(--gray-700)",
-                      }}
-                    >
-                      Servicio de Interés
-                    </label>
-                    <select
-                      id="servicio"
-                      name="servicio"
-                      style={{
-                        width: "100%",
-                        padding: "0.75rem",
-                        border: "1px solid var(--gray-300)",
-                        borderRadius: "0.5rem",
-                        fontSize: "1rem",
-                        fontFamily: "inherit",
-                        backgroundColor: "var(--white)",
-                      }}
-                    >
-                      <option value="">Seleccione un servicio</option>
-                      <option value="control-instrumentacion">
-                        Control e Instrumentación
-                      </option>
-                      <option value="variadores-velocidad">
-                        Variadores de Velocidad
-                      </option>
-                      <option value="reles-inteligentes">
-                        Protección con Relés
-                      </option>
-                      <option value="plc-dcs">Programación PLC/DCS</option>
-                      <option value="integracion-sistemas">
-                        Integración de Sistemas
-                      </option>
-                      <option value="consultoria-asesoria">
-                        Consultoría Técnica
-                      </option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="mensaje"
-                      style={{
-                        display: "block",
-                        marginBottom: "0.5rem",
-                        fontWeight: 600,
-                        color: "var(--gray-700)",
-                      }}
-                    >
-                      Descripción del Proyecto *
-                    </label>
-                    <textarea
-                      id="mensaje"
-                      name="mensaje"
-                      rows="5"
-                      required
-                      placeholder="Describa su proyecto, proceso actual, desafíos técnicos y objetivos esperados..."
-                      style={{
-                        width: "100%",
-                        padding: "0.75rem",
-                        border: "1px solid var(--gray-300)",
-                        borderRadius: "0.5rem",
-                        fontSize: "1rem",
-                        fontFamily: "inherit",
-                        resize: "vertical",
-                      }}
-                    />
-                  </div>
-
-                  <div
-                    style={{
-                      padding: "1rem",
-                      backgroundColor: "var(--gray-100)",
-                      borderRadius: "0.5rem",
-                      fontSize: "0.875rem",
-                      color: "var(--gray-600)",
-                    }}
-                  >
-                    <p style={{ margin: 0 }}>
-                      <strong>Nota:</strong> Este formulario está configurado
-                      para envío por email. Para una implementación completa, se
-                      recomienda integrar con servicios como Formspree, Netlify
-                      Forms o su backend personalizado.
-                    </p>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="large"
-                    fullWidth
-                  >
-                    Enviar Consulta
-                  </Button>
-                </form>
+                <ContactForm />
               </Card.Body>
             </Card>
           </div>
