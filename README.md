@@ -8,7 +8,7 @@ Sitio web corporativo estático construido con Next.js 16 para empresa especiali
 - **JavaScript** (sin TypeScript para simplicidad)
 - **CSS Modules** para estilos
 - **Responsive Design** con enfoque mobile-first
-- **SEO optimizado** con metadata completa
+- **SEO básico** con metadata por página
 - **Paleta azul/gris ingenieril** profesional
 - **Componentes reutilizables** y modulares
 
@@ -85,27 +85,39 @@ Todo el contenido del sitio está centralizado en archivos de configuración:
 - **src/content/projects.js**: Casos de éxito estructurados (problema → solución → resultados)
 - **src/content/industries.js**: Sectores industriales atendidos
 
+> Para editar el contenido **sin saber programar**, sigue la guía paso a paso en
+> [`docs/EDITAR-CONTENIDO.md`](docs/EDITAR-CONTENIDO.md).
+
 ## 🎯 Funcionalidades Implementadas
 
 ### ✅ Completadas
 
 - [x] Homepage completa con todas las secciones
 - [x] Navegación responsive con menú móvil
-- [x] Páginas principales (Servicios, Proyectos, Acerca de, Contacto)
+- [x] Páginas de listado (Servicios, Proyectos, Acerca de, Contacto)
 - [x] Componentes reutilizables
 - [x] Sistema de colores corporativo
-- [x] Integración WhatsApp para CTAs
-- [x] SEO básico con metadata
+- [x] Estructura de CTAs a WhatsApp (falta el número real, ver "Bloqueante")
+- [x] Metadata por página (excepto la home) y Open Graph básico
 - [x] Responsive design
+
+### 🔴 Bloqueante (antes de publicar)
+
+- [ ] Reemplazar teléfono y WhatsApp reales en `src/content/site.js` — hoy son placeholders
+      (`+56 9 XXXX XXXX`, `569XXXXXXXX`) y los enlaces `tel:`/`wa.me` no funcionan
+- [ ] Crear las páginas de detalle `servicios/[slug]` y `proyectos/[slug]`, o desactivar los
+      botones "Ver Detalles"/"Ver Caso": hoy enlazan a rutas inexistentes → **404**
+- [ ] Conectar el formulario de contacto a un servicio real (Formspree/Netlify): hoy el `<form>`
+      no tiene `action`/`onSubmit` y no envía nada
+- [ ] Validar/autorizar clientes, cifras y testimonios de `src/content/projects.js` (datos de ejemplo)
 
 ### 🔄 Por Implementar
 
-- [ ] Páginas dinámicas servicios/[slug] y proyectos/[slug]
-- [ ] Formulario de contacto funcional (Formspree/Netlify)
-- [ ] Optimización de imágenes
-- [ ] Sitemap automático
+- [ ] Optimización de imágenes (`next/image`) y assets reales (logo, favicon, imagen Open Graph)
+- [ ] `sitemap.js`, `robots.js` y metadata propia de la home
+- [ ] Datos estructurados JSON-LD (Organization/LocalBusiness)
 - [ ] Google Analytics
-- [ ] Tests básicos
+- [ ] ESLint + tests básicos
 
 ## 🚀 Despliegue
 
@@ -137,6 +149,10 @@ export const siteConfig = {
 };
 ```
 
+> ⚠️ Esos son los valores **placeholder actuales** del proyecto. Reemplázalos por los reales
+> antes de publicar: mientras tengan `XXXX`, los enlaces de teléfono y WhatsApp no funcionan.
+> El `whatsapp` va sin `+`, sin espacios ni guiones (ej. `56912345678`).
+
 ### Agregar/Modificar Servicios
 
 Edita `src/content/services.js` y agrega nuevos objetos al array `services`.
@@ -163,11 +179,15 @@ Para hacer funcional el formulario de contacto, integra con:
 
 ## 🎯 SEO y Performance
 
-- Metadata optimizada por página
-- Estructura semántica HTML5
-- Imágenes con alt text
+Estado actual:
+
+- Metadata por página (la **home** aún no tiene metadata propia)
+- Open Graph básico en el layout (sin imagen `og:image` todavía)
+- Estructura semántica HTML5, `lang="es"` y un único `<h1>` por página
 - URLs amigables
-- Core Web Vitals optimizados
+
+Pendiente: metadata de la home, `sitemap.js`, `robots.js`, imagen Open Graph, JSON-LD
+(Organization) y revisión de Core Web Vitals.
 
 ---
 

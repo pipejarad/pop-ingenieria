@@ -1,5 +1,28 @@
 # TODO - Próximas Mejoras del Sitio Web
 
+## 🔴 Bloqueante — antes de publicar
+
+Detectado en la revisión del proyecto. Esto impide que el sitio salga a producción:
+
+- [ ] **Datos de contacto placeholder.** `src/content/site.js` trae `phone: "+56 9 XXXX XXXX"` y
+      `whatsapp: "569XXXXXXXX"`. Se muestran en todo el sitio y rompen los enlaces `tel:` y
+      `wa.me` (incluido el CTA principal de WhatsApp). Reemplazar por los valores reales.
+- [ ] **Rutas de detalle inexistentes → 404.** Los botones "Ver Detalles" (`/servicios/{id}`) y
+      "Ver Caso" (`/proyectos/{id}`) enlazan a páginas que no existen. Crear
+      `servicios/[slug]/page.js` y `proyectos/[slug]/page.js` (con `generateStaticParams`), o
+      desactivar esos botones mientras tanto.
+- [ ] **Formulario de contacto no envía nada.** `src/app/contacto/page.js` tiene un `<form>` sin
+      `action` ni `onSubmit`. Integrar Formspree/Netlify/handler y quitar la nota de plantilla
+      visible al usuario (líneas ~400-405).
+- [ ] **Bug de estilos en `Button`.** En `src/components/Button.jsx` el `{...props}` sobrescribe
+      el `className` calculado: cuando el padre pasa `className` (el CTA del Header) se pierden
+      las clases de variante. Combinar en vez de sobrescribir.
+- [ ] **Casos de éxito por validar.** Clientes, cifras y testimonios de `src/content/projects.js`
+      parecen datos de ejemplo. Validar/autorizar o marcar como ilustrativos.
+
+> El detalle de implementación de las páginas dinámicas y del formulario está más abajo, en
+> "Prioridad Alta".
+
 ## 🔥 Prioridad Alta (Próxima semana)
 
 ### Páginas Dinámicas
