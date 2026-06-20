@@ -1,10 +1,34 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Section from "@/components/Section";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
+import {
+  Activity,
+  Zap,
+  CircuitBoard,
+  Cpu,
+  Share2,
+  ClipboardCheck,
+  Cog,
+  Check,
+  ArrowRight,
+  MessageCircle,
+  Mail,
+} from "lucide-react";
+
+import Section from "@/components/site/Section";
+import Container from "@/components/site/Container";
+import Button from "@/components/site/Button";
+
 import { services, getServiceBySlug } from "@/content/services";
 import { siteConfig } from "@/content/site";
+
+const serviceIcons = {
+  "control-instrumentacion": Activity,
+  "variadores-velocidad": Zap,
+  "reles-inteligentes": CircuitBoard,
+  "plc-dcs": Cpu,
+  "integracion-sistemas": Share2,
+  "consultoria-asesoria": ClipboardCheck,
+};
 
 export function generateStaticParams() {
   return services.map((service) => ({ slug: service.id }));
@@ -23,154 +47,197 @@ export default async function ServicioDetallePage({ params }) {
   if (!service) notFound();
 
   const otherServices = services.filter((s) => s.id !== service.id);
-  const ctaWhatsAppLink = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+  const Icon = serviceIcons[service.id] || Cog;
+  const wa = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
     siteConfig.whatsappMessage
   )}`;
 
   return (
-    <main>
-      {/* Breadcrumb + Hero */}
-      <Section background="gray">
+    <main className="flex-1">
+      {/* BREADCRUMB + HERO */}
+      <Section bg="muted">
         <nav
-          style={{
-            fontSize: "0.875rem",
-            color: "var(--gray-500)",
-            marginBottom: "1.5rem",
-          }}
+          aria-label="Ruta de navegación"
+          className="text-sm text-gray-500 mb-8"
         >
-          <Link href="/">Inicio</Link> / <Link href="/servicios">Servicios</Link> /{" "}
-          <span style={{ color: "var(--gray-700)" }}>{service.title}</span>
+          <Link href="/" className="hover:text-brand transition-colors">
+            Inicio
+          </Link>
+          <span className="mx-2 text-gray-300">/</span>
+          <Link href="/servicios" className="hover:text-brand transition-colors">
+            Servicios
+          </Link>
+          <span className="mx-2 text-gray-300">/</span>
+          <span className="text-gray-700">{service.title}</span>
         </nav>
-        <div style={{ maxWidth: "800px" }}>
-          <div style={{ fontSize: "3.5rem", marginBottom: "1rem" }} aria-hidden="true">
-            {service.icon}
+
+        <div className="max-w-3xl">
+          <div className="grid place-items-center h-14 w-14 rounded-xl bg-brand text-white mb-6">
+            <Icon size={28} strokeWidth={1.75} />
           </div>
-          <h1>{service.title}</h1>
-          <p style={{ fontSize: "1.25rem", color: "var(--gray-600)" }}>
-            {service.description}
-          </p>
+          <h1 className="text-4xl sm:text-5xl font-semibold text-gray-900 leading-[1.08] tracking-tight">
+            {service.title}
+          </h1>
+          <p className="mt-6 text-lg text-gray-600">{service.description}</p>
         </div>
       </Section>
 
-      {/* Características y Beneficios */}
+      {/* CARACTERÍSTICAS Y BENEFICIOS */}
       <Section>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "3rem",
-          }}
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <div>
-            <h2>Características</h2>
-            <ul style={{ listStyle: "none", padding: 0 }}>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand mb-3">
+              Qué incluye
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-7">
+              Características
+            </h2>
+            <ul className="space-y-3.5">
               {service.features.map((feature, index) => (
-                <li
-                  key={index}
-                  style={{
-                    display: "flex",
-                    gap: "0.5rem",
-                    marginBottom: "0.75rem",
-                    color: "var(--gray-700)",
-                  }}
-                >
-                  <span style={{ color: "var(--primary-blue)" }} aria-hidden="true">
-                    ✓
+                <li key={index} className="flex items-start gap-3">
+                  <span className="grid place-items-center h-6 w-6 shrink-0 rounded-md bg-brand/5 text-brand mt-0.5">
+                    <Check size={15} strokeWidth={2.25} />
                   </span>
-                  {feature}
+                  <span className="text-[15px] text-gray-700">{feature}</span>
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-3">
+              Qué gana
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-7">
+              Beneficios
+            </h2>
+            <ul className="space-y-3.5">
+              {service.benefits.map((benefit, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <span className="grid place-items-center h-6 w-6 shrink-0 rounded-md bg-accent/10 text-accent mt-0.5">
+                    <Check size={15} strokeWidth={2.25} />
+                  </span>
+                  <span className="text-[15px] text-gray-700">{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      {/* TECNOLOGÍAS Y APLICACIONES */}
+      <Section
+        bg="muted"
+        eyebrow="Capacidades"
+        title="Tecnologías y aplicaciones"
+        intro="Las plataformas con las que trabajamos y los contextos donde aplicamos este servicio."
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div>
+            <h3 className="text-base font-semibold text-gray-900 mb-4">
+              Tecnologías
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
+              {service.technologies.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-xs text-gray-600 bg-gray-100 px-2.5 py-1 rounded-md"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
           <div>
-            <h2>Beneficios</h2>
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              {service.benefits.map((benefit, index) => (
-                <li
-                  key={index}
-                  style={{
-                    display: "flex",
-                    gap: "0.5rem",
-                    marginBottom: "0.75rem",
-                    color: "var(--gray-700)",
-                  }}
+            <h3 className="text-base font-semibold text-gray-900 mb-4">
+              Aplicaciones
+            </h3>
+            <div className="flex flex-wrap gap-1.5">
+              {service.applications.map((app) => (
+                <span
+                  key={app}
+                  className="text-xs text-gray-600 bg-gray-100 px-2.5 py-1 rounded-md"
                 >
-                  <span style={{ color: "var(--success-green)" }} aria-hidden="true">
-                    ✓
-                  </span>
-                  {benefit}
-                </li>
+                  {app}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </Section>
 
-      {/* Tecnologías y Aplicaciones */}
-      <Section background="gray">
-        <h2 style={{ marginBottom: "1.5rem" }}>Tecnologías y Aplicaciones</h2>
-        <div style={{ marginBottom: "1.5rem" }}>
-          <Card.Tags tags={service.technologies} />
-        </div>
-        <p style={{ color: "var(--gray-600)" }}>
-          <strong style={{ color: "var(--gray-700)" }}>Aplicaciones:</strong>{" "}
-          {service.applications.join(" · ")}
-        </p>
-      </Section>
-
-      {/* Otros servicios */}
-      <Section>
-        <h2 style={{ marginBottom: "1.5rem" }}>Otros servicios</h2>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-          {otherServices.map((s) => (
-            <Link
-              key={s.id}
-              href={`/servicios/${s.id}`}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                padding: "0.75rem 1rem",
-                border: "1px solid var(--gray-200)",
-                borderRadius: "0.5rem",
-              }}
-            >
-              <span aria-hidden="true">{s.icon}</span> {s.title}
-            </Link>
-          ))}
+      {/* OTROS SERVICIOS */}
+      <Section
+        eyebrow="Seguir explorando"
+        title="Otros servicios"
+        intro="Cubrimos el ciclo completo de automatización. Estos son los demás servicios que ofrecemos."
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {otherServices.map((s) => {
+            const OtherIcon = serviceIcons[s.id] || Cog;
+            return (
+              <Link
+                key={s.id}
+                href={`/servicios/${s.id}`}
+                className="group flex items-center gap-4 bg-white border border-gray-200 rounded-xl p-5 transition-all duration-200 hover:border-brand/30 hover:shadow-sm hover:-translate-y-0.5"
+              >
+                <span className="grid place-items-center h-10 w-10 shrink-0 rounded-lg bg-brand/5 text-brand">
+                  <OtherIcon size={20} strokeWidth={1.75} />
+                </span>
+                <span className="text-[15px] font-medium text-gray-900 leading-snug">
+                  {s.title}
+                </span>
+                <ArrowRight
+                  size={16}
+                  className="ml-auto shrink-0 text-gray-400 transition-all group-hover:text-brand group-hover:translate-x-0.5"
+                />
+              </Link>
+            );
+          })}
         </div>
       </Section>
 
-      {/* CTA */}
-      <Section background="primary">
-        <div style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto" }}>
-          <h2 style={{ color: "var(--white)" }}>¿Le interesa este servicio?</h2>
-          <p style={{ fontSize: "1.125rem", marginBottom: "2rem", opacity: 0.95 }}>
-            Conversemos sobre cómo aplicarlo a su proceso.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-              justifyContent: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <Button
-              variant="accent"
-              size="large"
-              href={ctaWhatsAppLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              📱 Cotizar Proyecto
-            </Button>
-            <Button variant="secondary" size="large" href="/contacto">
-              📧 Contacto
-            </Button>
+      {/* CTA FINAL */}
+      <section className="bg-brand text-white">
+        <Container className="py-20 sm:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-accent mb-4">
+                Conversemos
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-semibold text-white leading-tight max-w-xl">
+                ¿Le interesa este servicio?
+              </h2>
+              <p className="mt-5 text-white/75 text-lg max-w-lg">
+                Conversemos sobre cómo aplicarlo a su proceso. Respondemos
+                personalmente, sin formularios largos ni vendedores.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-stretch">
+              <Button
+                variant="primary"
+                size="lg"
+                href={wa}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="justify-center"
+              >
+                <MessageCircle size={18} />
+                Cotizar Proyecto
+              </Button>
+              <Button
+                variant="outline-light"
+                size="lg"
+                href="/contacto"
+                className="justify-center"
+              >
+                <Mail size={18} />
+                Contacto
+              </Button>
+            </div>
           </div>
-        </div>
-      </Section>
+        </Container>
+      </section>
     </main>
   );
 }
