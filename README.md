@@ -145,7 +145,7 @@ Edita `src/content/site.js`:
 ```javascript
 export const siteConfig = {
   phone: "+56 9 XXXX XXXX",
-  email: "contacto@popingenieria.cl",
+  email: "contacto@pop-ingenieria.cl",
   whatsapp: "569XXXXXXXX",
   // ...
 };
@@ -181,7 +181,7 @@ Para que envíe correos en producción:
 1. Crea una cuenta en Resend y genera una API key.
 2. Copia `.env.example` a `.env.local` y completa `RESEND_API_KEY` (y, si quieres,
    `CONTACT_TO_EMAIL` y `CONTACT_FROM_EMAIL`).
-3. Para remitir desde `@popingenieria.cl`, verifica el dominio en Resend; mientras tanto se usa
+3. Para remitir desde `@pop-ingenieria.cl`, verifica el dominio en Resend; mientras tanto se usa
    el remitente de pruebas de Resend.
 
 Sin `RESEND_API_KEY`, el formulario muestra un mensaje de error claro en vez de fallar.

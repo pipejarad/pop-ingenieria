@@ -117,7 +117,7 @@ El enlace de WhatsApp se construye igual en varios componentes:
   (ver `.env.example`); sin ella el action devuelve un error claro y no rompe. Incluye honeypot
   anti-spam y validación de servidor.
 - Teléfono/WhatsApp **reales** en `site.js` (`+56943493458`); los enlaces `tel:` y `wa.me`
-  funcionan. El `email` (`contacto@popingenieria.cl`) y `address` (`Santiago, Chile`) siguen
+  funcionan. El `email` (`contacto@pop-ingenieria.cl`) y `address` (`Santiago, Chile`) siguen
   **a confirmar** con el cliente.
 - `site/Button` con `href`: enlaces internos (empieza por `/`) usan `next/link`, externos `<a>`.
   Props: `variant` (`primary`=naranja, `secondary`=borde azul, `ghost`, `outline-light` para

@@ -1,6 +1,6 @@
 import { services } from "@/content/services";
 
-const BASE_URL = "https://popingenieria.cl";
+const BASE_URL = "https://pop-ingenieria.cl";
 
 export default function sitemap() {
   const staticRoutes = ["", "/servicios", "/proyectos", "/acerca-de", "/contacto"].map(
