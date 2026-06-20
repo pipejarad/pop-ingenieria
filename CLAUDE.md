@@ -16,9 +16,9 @@ el contenido vive en archivos JS bajo `src/content/`.
 - **Next.js 16.1.6** (App Router, build con Turbopack)
 - **React 19.2.3**
 - **JavaScript puro** (sin TypeScript)
-- **Estilado en migración:** la **home** usa **Tailwind v4** + **lucide-react** (componentes en
-  `src/components/site/`); el resto del sitio usa **CSS Modules** + estilos inline. Tokens
-  compartidos en `globals.css` (`@theme` para Tailwind + `:root` para `var()`)
+- **Tailwind v4** + **lucide-react** en **todo el sitio** (componentes de diseño en
+  `src/components/site/`). Tokens en `globals.css` (`@theme` para las clases Tailwind +
+  `:root` para `var()` heredado). Estilos base en `@layer base`.
 - **next/font** (Inter), sin librerías de UI ni de estado
 - **Resend** para el envío del formulario de contacto (vía Server Action)
 - Despliegue: **Vercel** o Node — ya **no** estático puro (las Server Actions descartan
@@ -52,16 +52,11 @@ src/
 │   ├── acerca-de/page.js     # historia, misión/visión, proceso, valores
 │   ├── contacto/page.js      # métodos de contacto; renderiza <ContactForm />
 │   └── contacto/actions.js   # 'use server' — Server Action enviarContacto() (Resend)
-├── components/               # componentes reutilizables (cada uno con su .module.css)
-│   ├── Header.jsx            # 'use client' — nav + menú móvil (useState, usePathname)
-│   ├── Footer.jsx            # server component — usa new Date() para el año
-│   ├── Container.jsx         # wrapper de ancho máximo (maxWidth: default|narrow|wide|fluid)
-│   ├── Section.jsx           # <section> + Container (spacing y background configurables)
-│   ├── Card.jsx              # Card compuesto: Card.Header/Body/Title/Description/Icon/Actions/Tags
-│   ├── Button.jsx            # botón polimórfico: con `href` renderiza <a>, si no <button>
-│   ├── ContactForm.jsx       # 'use client' — formulario de contacto (useActionState + Server Action)
-│   └── site/                 # ⭐ componentes del diseño NUEVO (Tailwind): Header, Footer, Container, Section, Button, Card
-│                             #    El layout usa site/Header y site/Footer (globales). Los Header/Footer viejos quedan sin uso.
+├── components/
+│   ├── ContactForm.jsx       # 'use client' — formulario de contacto (useActionState + Server Action, Tailwind)
+│   └── site/                 # componentes de diseño (Tailwind + lucide): Header ('use client'),
+│                             #    Footer, Container, Section (eyebrow/title/intro/bg), Button (variant/size/href), Card
+│                             #    El layout usa site/Header y site/Footer (globales).
 └── content/                  # ÚNICA fuente de datos del sitio
     ├── site.js               # siteConfig: nombre, contacto, stats, navigation
     ├── services.js           # services[] + featuredServices (los que tienen featured:true)
@@ -107,12 +102,12 @@ El enlace de WhatsApp se construye igual en varios componentes:
 
 - **Alias de import**: `@/*` → `src/*` (ver `jsconfig.json`). Usa `@/components/...`, `@/content/...`.
 - **Contenido centralizado**: para editar textos/datos, toca `src/content/*`, no los componentes.
-- **Estilos**: los componentes usan CSS Modules; **las páginas (`app/**/page.js`) usan estilos
-  inline** intensivamente (patrón actual, inconsistente pero deliberado). Los design tokens viven
-  como variables CSS en `globals.css` (`--primary-blue`, `--accent-orange`, `--gray-50..900`,
-  `--white`, etc.) y se referencian con `var(--token)`.
-- **Server vs Client**: por defecto Server Components. Solo `Header.jsx` es `'use client'`
-  (usa `useState`/`usePathname`). Mantén la interactividad aislada en componentes cliente.
+- **Estilos**: **Tailwind v4** en todo el sitio, con los componentes de diseño en
+  `src/components/site/` (`Section`, `Card`, `Button`, `Container`) y **lucide-react** para iconos.
+  Clases de marca: `text-brand`/`bg-brand` (azul), `text-accent`/`bg-accent` (naranja CTA), escala
+  `gray-*`. Tokens en `globals.css` (`@theme` + `:root`).
+- **Server vs Client**: por defecto Server Components. Client components: `site/Header.jsx`
+  (menú móvil, `useState`) y `ContactForm.jsx` (`useActionState`). Mantén la interactividad aislada.
 - **Idioma**: todo el contenido y los textos de UI están en español (es_CL). `<html lang="es">`.
 
 ## Trampas / cosas a saber (gotchas)
@@ -124,9 +119,9 @@ El enlace de WhatsApp se construye igual en varios componentes:
 - Teléfono/WhatsApp **reales** en `site.js` (`+56943493458`); los enlaces `tel:` y `wa.me`
   funcionan. El `email` (`contacto@popingenieria.cl`) y `address` (`Santiago, Chile`) siguen
   **a confirmar** con el cliente.
-- `Button.jsx` con `href`: usa `next/link` para enlaces internos (empieza por `/`) y `<a>` para
-  externos (http, mailto:, tel:, wa.me); el `className` del padre se **combina** con las clases de
-  variante/tamaño (no las sobrescribe).
+- `site/Button` con `href`: enlaces internos (empieza por `/`) usan `next/link`, externos `<a>`.
+  Props: `variant` (`primary`=naranja, `secondary`=borde azul, `ghost`, `outline-light` para
+  fondos azules) y `size` (`md`/`lg`).
 - Las `stats` de `site.js` (200+, 50+, etc.) son cifras de marketing **a confirmar** con el
   cliente antes de publicar. (Las secciones de cifras inventadas de `proyectos/page.js` ya se
   eliminaron.)
