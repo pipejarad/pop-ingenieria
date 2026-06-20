@@ -90,6 +90,7 @@ Detectado en la revisión del proyecto. Esto impide que el sitio salga a producc
 
 ### Técnicas
 
+- [x] ESLint (eslint-config-next, `npm run lint`)
 - [ ] Migración a TypeScript
 - [ ] Tests unitarios (Jest)
 - [ ] Tests E2E (Playwright)

@@ -29,9 +29,10 @@ npm install        # instalar dependencias
 npm run dev        # desarrollo en http://localhost:3000
 npm run build      # build de producción (genera páginas estáticas)
 npm start          # servir el build
+npm run lint       # ESLint (eslint-config-next)
 ```
 
-No hay `lint`, `test` ni CI configurados (ver "Estado y pendientes").
+Hay ESLint (`npm run lint`, con `eslint-config-next`); no hay `test` ni CI configurados (ver "Estado y pendientes").
 
 ## Estructura
 
@@ -131,10 +132,10 @@ El proyecto compila; las páginas principales y el detalle de servicio (`servici
 funcionan. Para considerarlo "terminado/lanzable" falta, en orden de prioridad: (1) reemplazar los
 placeholders de contacto (teléfono/WhatsApp); (2) configurar Resend en producción
 (`RESEND_API_KEY` + dominio verificado) y desplegar en Vercel; (3) imágenes reales / `next/image`
-/ og-image y JSON-LD (requieren assets/datos reales); (4) tooling (ESLint, tests).
+/ og-image y JSON-LD (requieren assets/datos reales); (4) tests y CI (ESLint ya configurado).
 Ya hecho: detalle de servicio, proyectos reales como lista simple, secciones inventadas eliminadas,
 20 años, tecnologías y copy del cliente, formulario de contacto funcional (Server Action + Resend),
-**SEO técnico básico (sitemap, robots, metadataBase, metadata de la home)**.
+**SEO técnico básico (sitemap, robots, metadataBase, metadata de la home)**, y ESLint configurado.
 
 Documentación del repo: `README.md` (uso/instalación/personalización para devs), `TODO.md`
 (backlog; su sección "🔴 Bloqueante" lista lo que impide publicar) y
