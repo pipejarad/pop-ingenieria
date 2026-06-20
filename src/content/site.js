@@ -4,10 +4,10 @@ export const siteConfig = {
   tagline: "Especialistas en Control e Instrumentación Industrial",
   description:
     "Servicios profesionales de automatización industrial, control de procesos, PLCs, DCS y sistemas de instrumentación para la industria.",
-  phone: "+56 9 XXXX XXXX",
+  phone: "+56943493458",
   email: "contacto@popingenieria.cl",
   address: "Santiago, Chile",
-  whatsapp: "569XXXXXXXX",
+  whatsapp: "56943493458",
   whatsappMessage:
     "Hola, me interesa conocer más sobre sus servicios de automatización industrial",
 

@@ -117,8 +117,9 @@ El enlace de WhatsApp se construye igual en varios componentes:
   envía con la Server Action `contacto/actions.js`, que usa **Resend**. Necesita `RESEND_API_KEY`
   (ver `.env.example`); sin ella el action devuelve un error claro y no rompe. Incluye honeypot
   anti-spam y validación de servidor.
-- Datos de contacto en `site.js` son **placeholders** (`phone: "+56 9 XXXX XXXX"`,
-  `whatsapp: "569XXXXXXXX"`): los enlaces `tel:` y `wa.me` no funcionan hasta reemplazarlos.
+- Teléfono/WhatsApp **reales** en `site.js` (`+56943493458`); los enlaces `tel:` y `wa.me`
+  funcionan. El `email` (`contacto@popingenieria.cl`) y `address` (`Santiago, Chile`) siguen
+  **a confirmar** con el cliente.
 - `Button.jsx` con `href`: usa `next/link` para enlaces internos (empieza por `/`) y `<a>` para
   externos (http, mailto:, tel:, wa.me); el `className` del padre se **combina** con las clases de
   variante/tamaño (no las sobrescribe).
@@ -129,13 +130,14 @@ El enlace de WhatsApp se construye igual en varios componentes:
 ## Estado y pendientes
 
 El proyecto compila; las páginas principales y el detalle de servicio (`servicios/[slug]`)
-funcionan. Para considerarlo "terminado/lanzable" falta, en orden de prioridad: (1) reemplazar los
-placeholders de contacto (teléfono/WhatsApp); (2) configurar Resend en producción
-(`RESEND_API_KEY` + dominio verificado) y desplegar en Vercel; (3) imágenes reales / `next/image`
-/ og-image y JSON-LD (requieren assets/datos reales); (4) tests (ESLint y CI lint+build ya configurados).
+funcionan. Para considerarlo "terminado/lanzable" falta, en orden de prioridad: (1) configurar
+Resend en producción (`RESEND_API_KEY` + dominio verificado) y desplegar en Vercel; (2) JSON-LD
+(Organization) y, cuando lleguen los assets del cliente, imágenes reales / `next/image` / og-image;
+(3) tests (ESLint y CI lint+build ya configurados). Email y dirección de `site.js` están por
+confirmar con el cliente.
 Ya hecho: detalle de servicio, proyectos reales como lista simple, secciones inventadas eliminadas,
 20 años, tecnologías y copy del cliente, formulario de contacto funcional (Server Action + Resend),
-**SEO técnico básico (sitemap, robots, metadataBase, metadata de la home)**, ESLint y CI (GitHub Actions: lint + build).
+**SEO técnico básico (sitemap, robots, metadataBase, metadata de la home)**, ESLint, CI (GitHub Actions: lint + build) y el **teléfono/WhatsApp reales**.
 
 Documentación del repo: `README.md` (uso/instalación/personalización para devs), `TODO.md`
 (backlog; su sección "🔴 Bloqueante" lista lo que impide publicar) y
