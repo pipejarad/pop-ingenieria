@@ -4,9 +4,8 @@
 
 Detectado en la revisión del proyecto. Esto impide que el sitio salga a producción:
 
-- [ ] **Datos de contacto placeholder.** `src/content/site.js` trae `phone: "+56 9 XXXX XXXX"` y
-      `whatsapp: "569XXXXXXXX"`. Se muestran en todo el sitio y rompen los enlaces `tel:` y
-      `wa.me` (incluido el CTA principal de WhatsApp). Reemplazar por los valores reales.
+- [x] **Datos de contacto (teléfono/WhatsApp).** Número real `+56943493458` en `src/content/site.js`;
+      los enlaces `tel:` y `wa.me` funcionan. (Email y dirección siguen por confirmar con el cliente.)
 - [ ] **Rutas de detalle inexistentes → 404.** Los botones "Ver Detalles" (`/servicios/{id}`) y
       "Ver Caso" (`/proyectos/{id}`) enlazan a páginas que no existen. Crear
       `servicios/[slug]/page.js` y `proyectos/[slug]/page.js` (con `generateStaticParams`), o
