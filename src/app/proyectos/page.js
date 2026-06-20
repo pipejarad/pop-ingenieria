@@ -6,7 +6,7 @@ import { projects } from "@/content/projects";
 export const metadata = {
   title: "Casos de Éxito - Proyectos de Automatización Industrial",
   description:
-    "Conozca nuestros casos de éxito en automatización industrial. Proyectos realizados en minería, energía, petroquímica y manufactura.",
+    "Conozca nuestros proyectos de automatización industrial realizados en minería, energía, forestal e industria en general.",
 };
 
 export default function ProyectosPage() {
@@ -19,8 +19,8 @@ export default function ProyectosPage() {
         >
           <h1>Nuestros Proyectos</h1>
           <p style={{ fontSize: "1.25rem" }}>
-            Casos de éxito que demuestran nuestro expertise técnico y capacidad
-            para generar valor en proyectos de automatización industrial.
+            Una muestra de los proyectos en los que hemos instalado, renovado y
+            puesto en marcha sistemas de automatización y control industrial.
           </p>
         </div>
       </Section>
@@ -45,170 +45,6 @@ export default function ProyectosPage() {
                 </Card.Body>
               )}
             </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* Stats Section */}
-      <Section background="primary">
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h2 style={{ color: "var(--white)" }}>
-            Impacto de Nuestros Proyectos
-          </h2>
-          <p style={{ fontSize: "1.125rem", opacity: 0.95 }}>
-            Resultados medibles que demuestran el valor de la automatización
-            industrial
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "2rem",
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <div
-              style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                marginBottom: "0.5rem",
-              }}
-            >
-              +25%
-            </div>
-            <div
-              style={{
-                fontSize: "1.125rem",
-                fontWeight: "600",
-                marginBottom: "0.25rem",
-              }}
-            >
-              Eficiencia Promedio
-            </div>
-            <div style={{ fontSize: "0.875rem", opacity: 0.9 }}>
-              Mejora en procesos optimizados
-            </div>
-          </div>
-
-          <div>
-            <div
-              style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                marginBottom: "0.5rem",
-              }}
-            >
-              40%
-            </div>
-            <div
-              style={{
-                fontSize: "1.125rem",
-                fontWeight: "600",
-                marginBottom: "0.25rem",
-              }}
-            >
-              Reducción Costos
-            </div>
-            <div style={{ fontSize: "0.875rem", opacity: 0.9 }}>
-              Ahorro operacional típico
-            </div>
-          </div>
-
-          <div>
-            <div
-              style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                marginBottom: "0.5rem",
-              }}
-            >
-              99%
-            </div>
-            <div
-              style={{
-                fontSize: "1.125rem",
-                fontWeight: "600",
-                marginBottom: "0.25rem",
-              }}
-            >
-              Disponibilidad
-            </div>
-            <div style={{ fontSize: "0.875rem", opacity: 0.9 }}>
-              Sistemas implementados
-            </div>
-          </div>
-
-          <div>
-            <div
-              style={{
-                fontSize: "3rem",
-                fontWeight: "bold",
-                marginBottom: "0.5rem",
-              }}
-            >
-              18
-            </div>
-            <div
-              style={{
-                fontSize: "1.125rem",
-                fontWeight: "600",
-                marginBottom: "0.25rem",
-              }}
-            >
-              Meses Promedio
-            </div>
-            <div style={{ fontSize: "0.875rem", opacity: 0.9 }}>
-              ROI recuperado
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Industries Served */}
-      <Section>
-        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-          <h2>Industrias Atendidas</h2>
-          <p style={{ fontSize: "1.125rem" }}>
-            Experiencia comprobada en sectores industriales críticos
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "1.5rem",
-            textAlign: "center",
-          }}
-        >
-          {[
-            { icon: "⛏️", name: "Minería", count: "8" },
-            { icon: "⚡", name: "Energía", count: "6" },
-            { icon: "🛢️", name: "Petroquímica", count: "4" },
-            { icon: "🏭", name: "Manufactura", count: "5" },
-            { icon: "🥫", name: "Alimentaria", count: "3" },
-            { icon: "💧", name: "Agua", count: "2" },
-          ].map((industry, index) => (
-            <div key={index} style={{ padding: "1.5rem" }}>
-              <div style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>
-                {industry.icon}
-              </div>
-              <h3 style={{ fontSize: "1.125rem", marginBottom: "0.25rem" }}>
-                {industry.name}
-              </h3>
-              <div
-                style={{
-                  color: "var(--primary-blue)",
-                  fontWeight: "600",
-                  fontSize: "0.875rem",
-                }}
-              >
-                {industry.count} proyectos
-              </div>
-            </div>
           ))}
         </div>
       </Section>

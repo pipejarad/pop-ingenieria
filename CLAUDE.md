@@ -119,20 +119,18 @@ El enlace de WhatsApp se construye igual en varios componentes:
 - `layout.js` define `--font-inter` vía `next/font` pero `globals.css` aplica
   `font-family: 'Inter', ...` por nombre literal en vez de `var(--font-inter)`: revisar que la
   fuente self-hosted se aplique realmente.
-- `proyectos/page.js` aún tiene dos secciones con **cifras genéricas/inventadas** ("Impacto de
-  Nuestros Proyectos" y "Industrias Atendidas" con contadores) que no salen de los datos reales:
-  revisar con el cliente. Los proyectos en sí ya son reales; las `stats` de `site.js` (200+, 50+)
-  siguen siendo cifras de marketing a confirmar.
+- Las `stats` de `site.js` (200+, 50+, etc.) son cifras de marketing **a confirmar** con el
+  cliente antes de publicar. (Las secciones de cifras inventadas de `proyectos/page.js` ya se
+  eliminaron.)
 
 ## Estado y pendientes
 
 El proyecto compila; las páginas principales y el detalle de servicio (`servicios/[slug]`)
 funcionan. Para considerarlo "terminado/lanzable" falta, en orden de prioridad: (1) reemplazar los
 placeholders de contacto (teléfono/WhatsApp); (2) hacer funcional el formulario de contacto;
-(3) revisar las secciones con cifras inventadas de `proyectos/page.js`; (4) imágenes reales /
-`next/image` / og-image; (5) SEO técnico (sitemap, robots, metadataBase, JSON-LD); (6) tooling
-(ESLint, tests). Ya hecho: detalle de servicio, proyectos reales como lista simple, 20 años,
-tecnologías y copy del cliente.
+(3) imágenes reales / `next/image` / og-image; (4) SEO técnico (sitemap, robots, metadataBase,
+JSON-LD); (5) tooling (ESLint, tests). Ya hecho: detalle de servicio, proyectos reales como lista
+simple, secciones de cifras inventadas eliminadas, 20 años, tecnologías y copy del cliente.
 
 Documentación del repo: `README.md` (uso/instalación/personalización para devs), `TODO.md`
 (backlog; su sección "🔴 Bloqueante" lista lo que impide publicar) y
