@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://popingenieria.cl/sitemap.xml",
+    sitemap: "https://pop-ingenieria.cl/sitemap.xml",
   };
 }

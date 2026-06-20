@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://popingenieria.cl"),
+  metadataBase: new URL("https://pop-ingenieria.cl"),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
@@ -32,7 +32,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "es_CL",
-    url: "https://popingenieria.cl",
+    url: "https://pop-ingenieria.cl",
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,

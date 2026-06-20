@@ -5,7 +5,7 @@ export const siteConfig = {
   description:
     "Servicios profesionales de automatización industrial, control de procesos, PLCs, DCS y sistemas de instrumentación para la industria.",
   phone: "+56943493458",
-  email: "contacto@popingenieria.cl",
+  email: "contacto@pop-ingenieria.cl",
   address: "Santiago, Chile",
   whatsapp: "56943493458",
   whatsappMessage:
