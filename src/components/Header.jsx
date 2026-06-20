@@ -59,17 +59,19 @@ export default function Header() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className={styles.mobileMenuButton}
             onClick={toggleMobileMenu}
-            aria-label="Abrir menú de navegación"
+            aria-label={mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? '✕' : '☰'}
           </button>
         </div>
 
         {/* Mobile Menu */}
-        <div className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ''}`}>
+        <div id="mobile-menu" className={`${styles.mobileMenu} ${mobileMenuOpen ? styles.open : ''}`}>
           <ul className={styles.mobileNavLinks}>
             {siteConfig.navigation.map((item) => (
               <li key={item.href}>

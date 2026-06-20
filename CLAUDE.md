@@ -43,7 +43,6 @@ src/
 │   ├── sitemap.js            # sitemap.xml (rutas estáticas + servicios/[slug])
 │   ├── robots.js             # robots.txt (apunta al sitemap)
 │   ├── globals.css           # variables CSS (:root), reset, tipografía, media queries globales
-│   ├── page.module.css       # ⚠️ HUÉRFANO: plantilla de create-next-app, NO se usa
 │   ├── servicios/page.js     # listado de servicios
 │   ├── servicios/[slug]/page.js  # detalle de cada servicio (SSG, generateStaticParams)
 │   ├── proyectos/page.js     # lista simple de proyectos (sin detalle)
@@ -113,20 +112,15 @@ El enlace de WhatsApp se construye igual en varios componentes:
 
 ## Trampas / cosas a saber (gotchas)
 
-- `page.module.css` es plantilla muerta: no lo edites esperando que afecte la home.
 - El formulario de contacto **ya funciona**: `ContactForm.jsx` (`'use client'`, `useActionState`)
   envía con la Server Action `contacto/actions.js`, que usa **Resend**. Necesita `RESEND_API_KEY`
   (ver `.env.example`); sin ella el action devuelve un error claro y no rompe. Incluye honeypot
   anti-spam y validación de servidor.
 - Datos de contacto en `site.js` son **placeholders** (`phone: "+56 9 XXXX XXXX"`,
   `whatsapp: "569XXXXXXXX"`): los enlaces `tel:` y `wa.me` no funcionan hasta reemplazarlos.
-- `Button.jsx`: cuando recibe `href` renderiza un `<a>` nativo (no `next/link`), perdiendo la
-  navegación SPA/prefetch en enlaces internos. Además hace `<a className={classes} {...props}>`,
-  por lo que si el padre pasa `className` (lo hace `Header` con `styles.ctaButton`) el spread
-  **sobrescribe** las clases de variante/tamaño.
-- `layout.js` define `--font-inter` vía `next/font` pero `globals.css` aplica
-  `font-family: 'Inter', ...` por nombre literal en vez de `var(--font-inter)`: revisar que la
-  fuente self-hosted se aplique realmente.
+- `Button.jsx` con `href`: usa `next/link` para enlaces internos (empieza por `/`) y `<a>` para
+  externos (http, mailto:, tel:, wa.me); el `className` del padre se **combina** con las clases de
+  variante/tamaño (no las sobrescribe).
 - Las `stats` de `site.js` (200+, 50+, etc.) son cifras de marketing **a confirmar** con el
   cliente antes de publicar. (Las secciones de cifras inventadas de `proyectos/page.js` ya se
   eliminaron.)
