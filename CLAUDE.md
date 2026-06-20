@@ -63,14 +63,14 @@ propios (logo, imágenes de proyectos, og-image). `src/app/favicon.ico` existe.
 
 ## Rutas
 
-Reales (generadas por el build): `/`, `/servicios`, `/proyectos`, `/acerca-de`, `/contacto`.
+Reales (generadas por el build): `/`, `/servicios`, `/proyectos`, `/acerca-de`, `/contacto`,
+y `/servicios/[slug]` (SSG: una página por servicio, vía `generateStaticParams`).
 
-⚠️ **Rutas dinámicas referenciadas pero INEXISTENTES** (dan 404): el código enlaza a
-`/servicios/{service.id}` y `/proyectos/{project.id}` desde varios sitios (home, footer,
-listados), pero **no existen** `src/app/servicios/[slug]/page.js` ni
-`src/app/proyectos/[slug]/page.js`. Hasta crearlas, todos los botones "Ver Detalles" /
-"Ver Caso Completo" están rotos. Los datos de detalle (features, benefits, problem/solution/
-results, testimonial) ya existen en `content/`, listos para alimentar esas páginas.
+- **`servicios/[slug]`** (`src/app/servicios/[slug]/page.js`): detalle de cada servicio. Usa
+  `getServiceBySlug(slug)` y `notFound()` si el slug no existe. Los botones "Ver Detalles" de la
+  home/listado/footer apuntan aquí. `params` es asíncrono (Next 16): `const { slug } = await params`.
+- **Proyectos NO tienen página de detalle:** son una **lista simple** (título + tecnologías). No
+  existe `proyectos/[slug]` ni botones "Ver Caso" — es así a propósito (decisión del cliente, 2026-06).
 
 ## Modelo de datos (contratos)
 
@@ -80,12 +80,12 @@ results, testimonial) ya existen en `content/`, listos para alimentar esas pági
 
 `services[]`: `id`, `title`, `description`, `shortDescription`, `icon` (emoji), `features[]`,
 `benefits[]`, `technologies[]`, `applications[]`, `featured`. `featuredServices` = filtrados por
-`featured`.
+`featured`; `getServiceBySlug(slug)` busca un servicio por su id.
 
-`projects[]`: `id`, `title`, `summary`, `industry`, `client`, `duration`, `year`, `image`
-(rutas a `/images/projects/*.jpg` que **no existen** en `public/`), `technologies[]`,
-`problem{}`, `solution{}` (con `timeline[]` en algunos), `results{}` (`metrics[]` con
-before/after/improvement), `testimonial{}` (opcional), `featured`, `tags[]`.
+`projects[]` (**lista simple**): `id`, `title`, `technologies[]`, `featured`. `featuredProjects` =
+filtrados por `featured`; `getProjectBySlug(slug)` existe como helper aunque no haya página de
+detalle. Sin cliente/año/industria/métricas/caso de éxito (los 9 proyectos reales del cliente
+solo traen título y, a veces, tecnologías).
 
 `industries[]`: `id`, `name`, `description`, `icon` (emoji), `applications[]`, `featured`.
 
@@ -119,16 +119,20 @@ El enlace de WhatsApp se construye igual en varios componentes:
 - `layout.js` define `--font-inter` vía `next/font` pero `globals.css` aplica
   `font-family: 'Inter', ...` por nombre literal en vez de `var(--font-inter)`: revisar que la
   fuente self-hosted se aplique realmente.
-- Clientes, cifras y testimonios en `projects.js`/`site.js` parecen **datos de ejemplo**:
-  validar antes de publicar.
+- `proyectos/page.js` aún tiene dos secciones con **cifras genéricas/inventadas** ("Impacto de
+  Nuestros Proyectos" y "Industrias Atendidas" con contadores) que no salen de los datos reales:
+  revisar con el cliente. Los proyectos en sí ya son reales; las `stats` de `site.js` (200+, 50+)
+  siguen siendo cifras de marketing a confirmar.
 
 ## Estado y pendientes
 
-El proyecto compila y las 5 páginas principales funcionan. Para considerarlo "terminado/lanzable"
-falta, en orden de prioridad: (1) reemplazar los placeholders de contacto; (2) crear las rutas
-dinámicas `[slug]` de servicios y proyectos; (3) hacer funcional el formulario de contacto;
-(4) añadir imágenes reales / `next/image` / og-image; (5) SEO técnico (sitemap, robots,
-metadataBase, JSON-LD); (6) tooling (ESLint, tests).
+El proyecto compila; las páginas principales y el detalle de servicio (`servicios/[slug]`)
+funcionan. Para considerarlo "terminado/lanzable" falta, en orden de prioridad: (1) reemplazar los
+placeholders de contacto (teléfono/WhatsApp); (2) hacer funcional el formulario de contacto;
+(3) revisar las secciones con cifras inventadas de `proyectos/page.js`; (4) imágenes reales /
+`next/image` / og-image; (5) SEO técnico (sitemap, robots, metadataBase, JSON-LD); (6) tooling
+(ESLint, tests). Ya hecho: detalle de servicio, proyectos reales como lista simple, 20 años,
+tecnologías y copy del cliente.
 
 Documentación del repo: `README.md` (uso/instalación/personalización para devs), `TODO.md`
 (backlog; su sección "🔴 Bloqueante" lista lo que impide publicar) y

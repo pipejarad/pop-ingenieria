@@ -1,7 +1,25 @@
 # Diseño: Páginas de detalle de servicios y proyectos (`[slug]`)
 
 **Fecha:** 2026-06-20
-**Estado:** Aprobado (diseño) — pendiente de plan de implementación
+**Estado:** Actualizado el 2026-06-20 por correcciones del cliente (ver sección siguiente).
+
+## Actualización de alcance — 2026-06-20 (correcciones del cliente)
+
+Tras recibir `correcciones_pag_web_pop_2026.md` y dos decisiones del responsable:
+
+- **Proyectos = lista simple, sin página de detalle.** Se **descarta `proyectos/[slug]`**. Los 4
+  proyectos de ejemplo se reemplazan por los **9 reales** del cliente, mostrados solo con título
+  y las tecnologías mencionadas (sin cliente/año/industria/métricas/testimonio). Se **quitan los
+  botones** "Ver Caso Completo"/"Ver Caso de Éxito" → esto elimina los 404 de proyectos sin crear
+  rutas. **La sección 6 de este spec queda anulada.**
+- **Servicios:** se mantiene `servicios/[slug]` (sección 5, sin cambios). Se actualizan las
+  `technologies` de los 6 servicios con las marcas reales del cliente.
+- **Contenido global:** experiencia **15 → 20 años**; nuevo copy del hero ("…20 años… Soluciones
+  integrales para la minería y la industria"); tagline de servicios ("Soluciones de acuerdo con la
+  complejidad del proceso y la simplicidad que nos brinda la tecnología").
+- **Industrias:** se mantienen las 8 (no se reenfoca solo a minería).
+
+El detalle de implementación vive en `docs/superpowers/plans/2026-06-20-paginas-detalle.md`.
 
 ## 1. Contexto y problema
 
