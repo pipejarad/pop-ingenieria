@@ -19,9 +19,9 @@ export default function ServiciosPage() {
         >
           <h1>Nuestros Servicios</h1>
           <p style={{ fontSize: "1.25rem" }}>
-            Soluciones especializadas en automatización industrial con más de 15
-            años de experiencia. Brindamos servicios integrales para optimizar
-            procesos industriales.
+            Soluciones de acuerdo con la complejidad del proceso y la simplicidad
+            que nos brinda la tecnología. Más de 20 años de experiencia en
+            automatización industrial.
           </p>
         </div>
       </Section>

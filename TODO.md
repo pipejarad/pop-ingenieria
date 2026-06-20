@@ -1,5 +1,28 @@
 # TODO - Próximas Mejoras del Sitio Web
 
+## 🔴 Bloqueante — antes de publicar
+
+Detectado en la revisión del proyecto. Esto impide que el sitio salga a producción:
+
+- [ ] **Datos de contacto placeholder.** `src/content/site.js` trae `phone: "+56 9 XXXX XXXX"` y
+      `whatsapp: "569XXXXXXXX"`. Se muestran en todo el sitio y rompen los enlaces `tel:` y
+      `wa.me` (incluido el CTA principal de WhatsApp). Reemplazar por los valores reales.
+- [ ] **Rutas de detalle inexistentes → 404.** Los botones "Ver Detalles" (`/servicios/{id}`) y
+      "Ver Caso" (`/proyectos/{id}`) enlazan a páginas que no existen. Crear
+      `servicios/[slug]/page.js` y `proyectos/[slug]/page.js` (con `generateStaticParams`), o
+      desactivar esos botones mientras tanto.
+- [x] **Formulario de contacto funcional.** Implementado con Server Action (`contacto/actions.js`)
+      + Resend y componente cliente `ContactForm.jsx`. Falta configurar `RESEND_API_KEY` en
+      producción (ver `.env.example`).
+- [ ] **Bug de estilos en `Button`.** En `src/components/Button.jsx` el `{...props}` sobrescribe
+      el `className` calculado: cuando el padre pasa `className` (el CTA del Header) se pierden
+      las clases de variante. Combinar en vez de sobrescribir.
+- [ ] **Casos de éxito por validar.** Clientes, cifras y testimonios de `src/content/projects.js`
+      parecen datos de ejemplo. Validar/autorizar o marcar como ilustrativos.
+
+> El detalle de implementación de las páginas dinámicas y del formulario está más abajo, en
+> "Prioridad Alta".
+
 ## 🔥 Prioridad Alta (Próxima semana)
 
 ### Páginas Dinámicas
@@ -8,12 +31,12 @@
 - [ ] Crear `/proyectos/[slug]/page.js` para casos de éxito completos
 - [ ] Implementar `generateStaticParams()` para SEO
 
-### Formulario de Contacto Funcional
+### Formulario de Contacto Funcional ✅ (hecho)
 
-- [ ] Integrar Formspree o Netlify Forms
-- [ ] Agregar validación client-side
-- [ ] Mensaje de confirmación tras envío
-- [ ] Notificación por email al recibir formularios
+- [x] Server Action + Resend (en lugar de Formspree/Netlify)
+- [x] Validación client-side y de servidor (+ honeypot anti-spam)
+- [x] Mensaje de confirmación tras envío
+- [x] Notificación por email (Resend) — requiere `RESEND_API_KEY` en producción
 
 ### Optimización de Imágenes
 
@@ -33,11 +56,12 @@
 
 ### SEO y Analytics
 
+- [x] Sitemap automático (`app/sitemap.js`) y `robots.txt` (`app/robots.js`)
+- [x] `metadataBase` y metadata propia de la home
+- [ ] Structured data (JSON-LD) — requiere datos de contacto reales
+- [ ] Meta tags Open Graph mejoradas (falta `og:image`)
 - [ ] Google Analytics 4
 - [ ] Google Search Console
-- [ ] Sitemap automático
-- [ ] Structured data (JSON-LD)
-- [ ] Meta tags Open Graph mejoradas
 
 ### Performance
 

@@ -5,7 +5,7 @@ import { siteConfig } from "@/content/site";
 export const metadata = {
   title: "Acerca de POP Ingeniería - Automatización Industrial",
   description:
-    "Más de 15 años de experiencia en automatización industrial. Conozca nuestra historia, misión y enfoque técnico especializado.",
+    "Más de 20 años de experiencia en automatización industrial. Conozca nuestra historia, misión y enfoque técnico especializado.",
 };
 
 export default function AcercaDePage() {
@@ -36,7 +36,7 @@ export default function AcercaDePage() {
           <div>
             <h2>Nuestra Historia</h2>
             <p style={{ fontSize: "1.125rem", marginBottom: "1.5rem" }}>
-              Con más de 15 años de experiencia en automatización industrial,
+              Con más de 20 años de experiencia en automatización industrial,
               POP Ingeniería nació de la visión de ofrecer soluciones técnicas
               de excelencia que optimicen los procesos industriales de nuestros
               clientes.

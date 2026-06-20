@@ -21,7 +21,7 @@ export const services = [
       "Mejor calidad del producto",
       "Menor variabilidad del proceso",
     ],
-    technologies: ["Honeywell", "Yokogawa", "ABB", "Siemens", "Emerson"],
+    technologies: ["Foxboro", "Honeywell", "ETH", "ABB", "Siemens"],
     applications: ["Refinación", "Petroquímica", "Minería", "Energía"],
     featured: true,
   },
@@ -46,7 +46,7 @@ export const services = [
       "Control preciso de velocidad",
       "Reducción de mantenimiento",
     ],
-    technologies: ["ABB", "Schneider", "Siemens", "Danfoss", "WEG"],
+    technologies: ["ABB", "Rockwell", "Danfoss", "Schneider"],
     applications: ["Bombas", "Ventiladores", "Compresores", "Transportadores"],
     featured: true,
   },
@@ -71,7 +71,7 @@ export const services = [
       "Reducción de paradas",
       "Mayor seguridad operacional",
     ],
-    technologies: ["SEL", "ABB", "Siemens", "GE", "Schneider"],
+    technologies: ["Rockwell", "ABB", "Schneider", "AB"],
     applications: ["Subestaciones", "Industria", "Generación", "Transmisión"],
     featured: false,
   },
@@ -96,13 +96,7 @@ export const services = [
       "Trazabilidad completa",
       "Operación remota",
     ],
-    technologies: [
-      "Allen-Bradley",
-      "Siemens",
-      "Schneider",
-      "Mitsubishi",
-      "Omron",
-    ],
+    technologies: ["Foxboro IA", "Allen Bradley", "Schneider"],
     applications: ["Manufactura", "Procesos", "Utilities", "Edificios"],
     featured: true,
   },
@@ -127,7 +121,7 @@ export const services = [
       "Eficiencia operacional",
       "Reducción de silos",
     ],
-    technologies: ["OPC-UA", "Modbus", "Ethernet/IP", "MQTT", "REST APIs"],
+    technologies: ["Ethernet/IP", "Modbus TCP", "OPC"],
     applications: ["MES", "ERP", "Cloud", "IoT Industrial"],
     featured: false,
   },
@@ -152,7 +146,7 @@ export const services = [
       "ROI optimizado",
       "Conocimiento transferido",
     ],
-    technologies: ["Metodologías ISA", "NIST", "IEC", "IEEE", "Best Practices"],
+    technologies: ["Norma ISA", "IEC", "IEEE"],
     applications: ["Evaluaciones", "Upgrades", "Modernización", "Startups"],
     featured: false,
   },
@@ -160,3 +154,8 @@ export const services = [
 
 // Servicios destacados para homepage
 export const featuredServices = services.filter((service) => service.featured);
+
+// Buscar un servicio por su id (para la ruta /servicios/[slug])
+export function getServiceBySlug(slug) {
+  return services.find((service) => service.id === slug);
+}

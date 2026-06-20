@@ -8,6 +8,14 @@ import { featuredServices } from "@/content/services";
 import { featuredProjects } from "@/content/projects";
 import { featuredIndustries } from "@/content/industries";
 
+export const metadata = {
+  title: {
+    absolute: "POP Ingeniería — Automatización Industrial y Control de Procesos",
+  },
+  description:
+    "Más de 20 años instalando, renovando y mejorando procesos industriales. Control e instrumentación, PLC/DCS, variadores y protecciones para la minería y la industria.",
+};
+
 export default function Home() {
   const ctaWhatsAppLink = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(siteConfig.whatsappMessage)}`;
 
@@ -31,9 +39,8 @@ export default function Home() {
               color: "var(--gray-600)",
             }}
           >
-            Más de 15 años optimizando procesos industriales con control e
-            instrumentación de última generación. Soluciones integrales para
-            minería, energía, petroquímica y manufactura.
+            Con más de 20 años instalando, renovando y mejorando procesos
+            industriales. Soluciones integrales para la minería y la industria.
           </p>
           <div
             style={{
@@ -246,7 +253,7 @@ export default function Home() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             gap: "2rem",
             marginBottom: "3rem",
           }}
@@ -254,61 +261,13 @@ export default function Home() {
           {featuredProjects.map((project) => (
             <Card key={project.id} variant="project">
               <Card.Header>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <Card.Title style={{ flex: 1 }}>{project.title}</Card.Title>
-                  <span
-                    style={{
-                      fontSize: "0.75rem",
-                      color: "var(--gray-500)",
-                      whiteSpace: "nowrap",
-                      marginLeft: "1rem",
-                    }}
-                  >
-                    {project.year}
-                  </span>
-                </div>
-                <Card.Description>{project.summary}</Card.Description>
+                <Card.Title>{project.title}</Card.Title>
               </Card.Header>
-              <Card.Body>
-                <div style={{ marginBottom: "1rem" }}>
-                  <div
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--gray-500)",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <strong>Cliente:</strong> {project.client}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "0.875rem",
-                      color: "var(--gray-500)",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    <strong>Industria:</strong> {project.industry}
-                  </div>
-                  <div
-                    style={{ fontSize: "0.875rem", color: "var(--gray-500)" }}
-                  >
-                    <strong>Duración:</strong> {project.duration}
-                  </div>
-                </div>
-                <Card.Tags tags={project.tags.slice(0, 3)} />
-                <Card.Actions>
-                  <Button variant="primary" href={`/proyectos/${project.id}`}>
-                    Ver Caso de Éxito
-                  </Button>
-                </Card.Actions>
-              </Card.Body>
+              {project.technologies.length > 0 && (
+                <Card.Body>
+                  <Card.Tags tags={project.technologies} />
+                </Card.Body>
+              )}
             </Card>
           ))}
         </div>

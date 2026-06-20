@@ -14,7 +14,7 @@ export const siteConfig = {
   // Métricas/credenciales
   stats: [
     {
-      number: "15+",
+      number: "20+",
       label: "Años de experiencia",
       description: "Trayectoria sólida en automatización",
     },

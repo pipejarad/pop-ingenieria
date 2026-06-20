@@ -29,7 +29,7 @@ export default function Footer() {
               </div>
               
               <p className={styles.brandDescription}>
-                Especialistas en control e instrumentación industrial con más de 15 años de experiencia. 
+                Especialistas en control e instrumentación industrial con más de 20 años de experiencia. 
                 Brindamos soluciones integrales para optimizar procesos industriales en diversos sectores.
               </p>
               
